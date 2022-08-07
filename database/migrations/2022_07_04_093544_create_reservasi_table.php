@@ -21,6 +21,9 @@ return new class extends Migration
             $table->string('total');
             $table->date('tanggal');
             $table->integer('status')->default(0);
+            $table->string('nama');
+            $table->string('email');
+            $table->string('no_hp');
             $table->timestamps();
         });
     }

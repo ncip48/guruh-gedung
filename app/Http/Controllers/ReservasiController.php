@@ -67,4 +67,8 @@ class ReservasiController extends Controller
         $gedung = Gedung::find($id_gedung);
         return view('reservasi', compact('date', 'gedung'));
     }
+
+    public function book(Request $request)
+    {
+    }
 }
