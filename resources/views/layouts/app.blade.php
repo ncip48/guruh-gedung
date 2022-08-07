@@ -73,13 +73,13 @@
                 <!-- start top search -->
                 <div class="top-search bg-black">
                     <div class="container">
-                        <form class="search-form" action="search.html" method="GET" accept-charset="utf-8">
+                        <form class="search-form" action="{{ url('order') }}" method="GET" accept-charset="utf-8">
                             <div class="input-group">
                                 <span class="input-group-addon cursor-pointer">
                                     <button class="search-form_submit fas fa-search font-size18 text-white"
                                         type="submit"></button>
                                 </span>
-                                <input type="text" class="search-form_input form-control" name="s"
+                                <input type="text" class="search-form_input form-control" name="kode"
                                     autocomplete="off" placeholder="Kode pesanan...">
                                 <span class="input-group-addon close-search"><i
                                         class="fas fa-times font-size18 line-height-28 margin-5px-top"></i></span>

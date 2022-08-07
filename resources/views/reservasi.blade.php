@@ -16,36 +16,43 @@
             <div class="row">
                 <div class="col-lg-8 sm-margin-50px-bottom">
                     <h4 class="text-uppercase letter-spacing-1 margin-30px-bottom font-size24">Form Reservasi</h4>
-                    <form method="post">
+                    <form id="booking-form" method="post" action="{{ url('booking') }}">
+                        @csrf
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">*Nama lengkap</label>
-                                    <input id="name" name="name" placeholder="John Doe" type="text">
+                                    <input id="name" placeholder="John Doe" type="text" name="nama">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="email">*Email</label>
-                                    <input id="email" name="email" placeholder="johndoe@gmail.com" type="email">
+                                    <input id="email" name="email" placeholder="johndoe@gmail.com" type="email"
+                                        name="email">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="phone">*Nomor Handphone</label>
-                                    <input id="phone" name="phone" placeholder="085156842765" type="phone">
+                                    <input id="phone" placeholder="085156842765" type="phone" name="no_hp">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="country">Gedung</label>
                                     <input class="form-control" type="text" value="{{ $gedung->nama }}" readonly>
+                                    <input class="form-control" type="hidden" value="{{ $gedung->id }}" readonly
+                                        name="gedung">
+                                    <input class="form-control" type="hidden" value="{{ $gedung->harga }}" readonly
+                                        name="total">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="country">Tanggal</label>
-                                    <input class="form-control" type="text" value="{{ $date }}" readonly>
+                                    <input class="form-control" type="text" value="{{ $date }}" readonly
+                                        name="date">
                                 </div>
                             </div>
                         </div>
@@ -64,7 +71,9 @@
                             <div>
                                 <div class="row align-items-center text-center padding-15px-tb">
                                     <div class="col-md-12">
-                                        <button type="submit" class="butn">Pesan</button>
+                                        <button
+                                            onclick="event.preventDefault(); document.getElementById('booking-form').submit();"
+                                            type="submit" class="butn">Pesan</button>
                                     </div>
                                 </div>
                             </div>

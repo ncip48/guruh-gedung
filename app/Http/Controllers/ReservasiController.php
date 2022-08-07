@@ -6,6 +6,7 @@ use App\Models\Gedung;
 use App\Models\Reservasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Services\Midtrans\CreateSnapTokenService;
 
 class ReservasiController extends Controller
 {
@@ -52,7 +53,7 @@ class ReservasiController extends Controller
         $gedung = Gedung::all();
         $tersedia = [];
         foreach ($gedung as $ged) {
-            $cek_tersedia = Reservasi::where('tanggal', $date)->where('id_gedung', $ged->id)->count();
+            $cek_tersedia = Reservasi::where('tanggal', $date)->where('id_gedung', $ged->id)->where('status', '!=', 3)->where('status', '!=', 4)->count();
             $ged->tersedia = $cek_tersedia == 1 ? false : true;
             $tersedia[] = $ged;
         }
@@ -68,7 +69,39 @@ class ReservasiController extends Controller
         return view('reservasi', compact('date', 'gedung'));
     }
 
-    public function book(Request $request)
+    public function booking(Request $request)
     {
+        $rand = rand(1231, 7879);
+        $kode = 'GDG' . $rand;
+        $transaction = Reservasi::create([
+            'kode' => $kode,
+            'id_user' => 0,
+            'id_gedung' => $request->gedung,
+            'total' => $request->total,
+            'tanggal' => $request->date,
+            'status' => 0,
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'no_hp' => $request->no_hp,
+        ]);
+        return redirect('order?kode=' . $transaction->kode);
+    }
+
+    public function order(Request $request)
+    {
+        $order = Reservasi::where('kode', $request->kode)->first();
+        $product = Gedung::find($order->id_gedung);
+        $snapToken = $order->snap_token;
+        if (empty($snapToken)) {
+            // Jika snap token masih NULL, buat token snap dan simpan ke database
+
+            $midtrans = new CreateSnapTokenService($order, $product);
+            $snapToken = $midtrans->getSnapToken();
+
+            $order->snap_token = $snapToken;
+            $order->save();
+        }
+
+        return view('order', compact('order', 'snapToken'));
     }
 }

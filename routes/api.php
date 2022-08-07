@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CallbackController;
 use App\Http\Controllers\MejaController;
 use App\Http\Controllers\ReservasiController;
 use App\Http\Controllers\ResponseController;
@@ -34,3 +35,7 @@ Route::get('/meja', [MejaController::class, 'getMeja']);
 
 //rute cek meja
 Route::get('/cek-gedung', [ReservasiController::class, 'cekGedung']);
+
+
+//callback
+Route::post('/midtrans/callback', [CallbackController::class, 'callback_midtrans']);
