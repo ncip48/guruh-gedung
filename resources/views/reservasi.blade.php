@@ -1,87 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
+@section('title', 'Pesan')
+@section('content')
+    <!-- start page title section -->
+    <section class="page-title-section bg-img cover-background" data-overlay-dark="4"
+        data-background="img/banner/lapangan2.jpg">
+        <div class="container">
+            <h1>Reservasi Gedung</h1>
+        </div>
+    </section>
+    <!-- end page title section -->
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-    <script>
-        $(function() {
-            $("#tanggal").datepicker({
-                dateFormat: 'dd MM yy',
-                minDate: 0,
-                "setDate": new Date()
-            });
-        });
-    </script>
-</head>
-
-<body>
-    <p>Date: <input type="text" id="tanggal" name="tanggal"></p>
-    <select name="meja" id="meja">
-        <option value="">Pilih Meja</option>
-        @foreach ($gedung as $m)
-            <option value="{{ $m->id }}">{{ $m->nama }}</option>
-        @endforeach
-    </select>
-
-    <div class="waktu">
-
-    </div>
-
-    <script>
-        $(document).ready(function() {
-            function convertDate(date) {
-                var dates = new Date(date);
-                var yyyy = dates.getFullYear().toString();
-                var mm = (dates.getMonth() + 1).toString();
-                var dd = dates.getDate().toString();
-
-                var mmChars = mm.split('');
-                var ddChars = dd.split('');
-
-                return yyyy + '-' + (mmChars[1] ? mm : "0" + mmChars[0]) + '-' + (ddChars[1] ? dd : "0" + ddChars[
-                    0]);
-            }
-
-            $("#meja").change(function() {
-                cariJadwal();
-            });
-
-            $("#tanggal").change(function() {
-                if ($("#meja").val() != "") {
-                    cariJadwal();
-                }
-            });
-
-            function cariJadwal() {
-                $(".waktu").html('');
-                var tanggal = $("#tanggal").val();
-                tanggal = convertDate(tanggal);
-                var meja = $("#meja").val();
-                console.log(tanggal);
-                field = $(".field").val();
-                $.ajax({
-                    type: "GET",
-                    url: "api/cek-meja?tanggal=" + tanggal + "&id_meja=" + meja,
-                    success: function(data) {
-                        $.each(data.data, function(k, v) {
-                            // / do stuff
-                            console.log(v);
-                            var status = v.status == 0 ? 'Tersedia' : 'Tidak Tersedia';
-                            $(".waktu").append('<h2>' + v.jam + '</h2><br><h5>' +
-                                status + '</h5>');
-                        });
-                    }
-                });
-            }
-        });
-    </script>
-</body>
-
-</html>
+    <!-- start booking-form section -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 sm-margin-50px-bottom">
+                    <h4 class="text-uppercase letter-spacing-1 margin-30px-bottom font-size24">Form Reservasi</h4>
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name">*Nama lengkap</label>
+                                    <input id="name" name="name" placeholder="John Doe" type="text">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email">*Email</label>
+                                    <input id="email" name="email" placeholder="johndoe@gmail.com" type="email">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="phone">*Nomor Handphone</label>
+                                    <input id="phone" name="phone" placeholder="085156842765" type="phone">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="country">Gedung</label>
+                                    <input class="form-control" type="text" value="{{ $gedung->nama }}" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="country">Tanggal</label>
+                                    <input class="form-control" type="text" value="{{ $date }}" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-4 popular-things">
+                    <div class="padding-30px-left sm-no-padding-left">
+                        <h4 class="text-uppercase letter-spacing-1 margin-30px-bottom font-size24">Total Harga</h4>
+                        <div class="theme-shadow border-radius-3 margin-30px-bottom">
+                            <img src={{ asset('/img/produk/' . $gedung->foto) }} alt="{{ $gedung->nama }}" />
+                            <div class="border-bottom padding-25px-all d-flex justify-content-between">
+                                <h5 class="font-size17 no-margin-bottom">@currency($gedung->harga)</h5>
+                                <ul class="rate no-margin-bottom">
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="row align-items-center text-center padding-15px-tb">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="butn">Pesan</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </section>
+    <!-- end booking-form section -->
+@endsection

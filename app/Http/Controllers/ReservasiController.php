@@ -59,4 +59,12 @@ class ReservasiController extends Controller
         // return ResponseController::response(true, 'Sukses', $tersedia);
         return view('cari', compact('tersedia', 'date'));
     }
+
+    public function reservasi(Request $request)
+    {
+        $date = $request->date;
+        $id_gedung = $request->gedung;
+        $gedung = Gedung::find($id_gedung);
+        return view('reservasi', compact('date', 'gedung'));
+    }
 }

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Home')
 @section('content')
     <!-- start banner -->
     <section class="bg-img screen-height cover-background beach-banner" data-overlay-dark="3"

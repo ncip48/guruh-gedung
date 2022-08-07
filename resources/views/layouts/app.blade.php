@@ -12,7 +12,7 @@
     <meta name="description" content="Fivestar - Hotel Booking Bootstrap Template" />
 
     <!-- title  -->
-    <title>Fivestar - Hotel Booking Bootstrap Template</title>
+    <title>@yield('title')</title>
 
     <!-- favicon -->
     <link rel="shortcut icon" href="img/logos/favicon.png" />
@@ -80,7 +80,7 @@
                                         type="submit"></button>
                                 </span>
                                 <input type="text" class="search-form_input form-control" name="s"
-                                    autocomplete="off" placeholder="Type & hit enter...">
+                                    autocomplete="off" placeholder="Kode pesanan...">
                                 <span class="input-group-addon close-search"><i
                                         class="fas fa-times font-size18 line-height-28 margin-5px-top"></i></span>
                             </div>
@@ -96,7 +96,7 @@
 
                                     <div class="navbar-header navbar-header-custom">
                                         <!-- start logo -->
-                                        <a href="index.html" class="navbar-brand logo4"><img id="logo"
+                                        <a href="{{ url('/') }}" class="navbar-brand logo4"><img id="logo"
                                                 src="img/logos/logo.png" alt="logo"></a>
                                         <!-- end logo -->
                                     </div>

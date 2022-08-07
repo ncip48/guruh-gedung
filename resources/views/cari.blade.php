@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Cari Gedung')
 @section('content')
     <!-- start our rooms section -->
     <section>
@@ -14,7 +14,8 @@
                         <div class="border {{ !$room->tersedia ? 'bg-gray' : '' }}">
                             <div class="container">
                                 <div class="row">
-                                    <img style="width: 200px" src="img/content/room-5.jpg" alt="" />
+                                    <img style="width: 200px" src={{ asset('/img/produk/' . $room->foto) }}
+                                        alt="{{ $room->nama }}" />
                                     @if (!$room->tersedia)
                                         <div class="ribbon ribbon-top-left"><span>Kosong</span></div>
                                     @endif
