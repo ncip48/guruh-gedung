@@ -32,6 +32,22 @@ class GaleriSeeder extends Seeder
                 [
                     'tag' => 'g4',
                     'url' => 'g4.jpg',
+                ],
+                [
+                    'tag' => 'g1',
+                    'url' => 'g1.jpg',
+                ],
+                [
+                    'tag' => 'g2',
+                    'url' => 'g2.jpg',
+                ],
+                [
+                    'tag' => 'g3',
+                    'url' => 'g3.jpg',
+                ],
+                [
+                    'tag' => 'g4',
+                    'url' => 'g4.jpg',
                 ]
             ]
         );

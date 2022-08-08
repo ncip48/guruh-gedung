@@ -22,20 +22,35 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">*Nama lengkap</label>
-                                    <input id="name" placeholder="John Doe" type="text" name="nama">
+                                    <input id="name" placeholder="John Doe" type="text" name="nama" value="{{ old('nama') }}">
+                                    @error('nama')
+                                        <small id="passwordHelp" class="text-danger">
+                                        {{ $message }}
+                                        </small> 
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="email">*Email</label>
                                     <input id="email" name="email" placeholder="johndoe@gmail.com" type="email"
-                                        name="email">
+                                        name="email" value="{{ old('email') }}">
+                                    @error('email')
+                                        <small id="passwordHelp" class="text-danger">
+                                        {{ $message }}
+                                        </small> 
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="phone">*Nomor Handphone</label>
-                                    <input id="phone" placeholder="085156842765" type="phone" name="no_hp">
+                                    <input id="phone" placeholder="085156842765" type="phone" name="no_hp" value="{{ old('no_hp') }}">
+                                    @error('no_hp')
+                                        <small id="passwordHelp" class="text-danger">
+                                        {{ $message }}
+                                        </small> 
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
