@@ -42,7 +42,7 @@ $icon = "far fa-clock";
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-md-5">
-                <div class="card border-0" style="box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.52);">
+                <div class="card p-4 border-0" style="box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.52);">
                     <div class="card-header text-center bg-white border-0">
                         <h6 class="m-0 {{$color}}">{{ $text }}</h6>
                         <i class="{{$icon}} {{$color}} mt-3 mb-3 fa-3x" aria-hidden="true"></i>
