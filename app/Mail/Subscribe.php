@@ -36,7 +36,7 @@ class Subscribe extends Mailable
         $order = Reservasi::where('kode', $this->order_id)->first();
         $product = Gedung::where('id', $order->id_gedung);
         return $this
-        ->subject('Konfirmasi pemesanan gedung')
+        ->subject('Konfirmasi pemesanan gedung ' . $order->kode)
         ->markdown('emails.booking', [
             'name' => $order->name,
             'detail' => $order,
