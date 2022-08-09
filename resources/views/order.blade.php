@@ -111,14 +111,14 @@ $icon = "far fa-clock";
                                     Metode Pembayaran
                                 </div>
                                 <div class="col-12 col-md-6 text-right">
-                                    @if($midtrans->payment_type == 'bank' || $midtrans->payment_type == 'bank_transfer')
+                                    @if($midtrans->payment_type == 'bank' || $midtrans->payment_type == 'bank_transfer' || $midtrans->payment_type == 'echannel')
                                         Transfer Bank
                                     @else
                                         {{strtoupper($midtrans->payment_type)}}
                                     @endif
                                 </div>
                             </div>
-                            @if($midtrans->payment_type == 'bank' || $midtrans->payment_type == 'bank_transfer')
+                            @if($midtrans->payment_type == 'bank' || $midtrans->payment_type == 'bank_transfer' || $midtrans->payment_type == 'echannel')
                                 <div class="row">
                                     <div class="col-12 col-md-6">
                                         Nama Bank
@@ -244,12 +244,12 @@ $icon = "far fa-clock";
 </script>
 <script>
         function addMinutes(date, minutes) {
-            return new Date(new Date(date).getTime() + minutes * 60000).getTime();
+            return new Date(date + minutes * 60000).getTime();
         }
         // Mengatur waktu akhir perhitungan mundur
         var date = "{{ isset($midtrans) ? $midtrans->transaction_time : 0 }}";
         var dates = new Date(date).getTime();
-        var countDownDate = addMinutes(date, 15);
+        var countDownDate = addMinutes(dates, 15);
         document.getElementById("time_expired").innerHTML = "Checking...";
         // Memperbarui hitungan mundur setiap 1 detik
         var x = setInterval(function() {
@@ -269,10 +269,11 @@ $icon = "far fa-clock";
             document.getElementById("time_expired").innerHTML = 
                 minutes + "m " + seconds + "s ";
             // Jika hitungan mundur selesai, tulis beberapa teks
-            if (distance < 0) {
+            if (distance < 25200000) {
                 clearInterval(x);
                 document.getElementById("time_expired").innerHTML = "EXPIRED";
                 document.getElementById("checktime").style.display = "none";
+                return;
             }
         }, 1000);
     </script>
