@@ -10,6 +10,7 @@ Berikut adalah detail mengenai reservasi anda<br>
 
 - No HP : {{$detail->no_hp}}
 - Total : @currency($detail->total)
+- Status : Belum di bayar
  
 @component('mail::button', ['url' => $url])
 Lihat Pesanan
