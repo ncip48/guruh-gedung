@@ -193,9 +193,11 @@ $icon = "far fa-clock";
                         </div>
                     </div>
                     <div class="card-footer border-0 bg-white">
-                        @if ($order->status == 0 || $order->status == 5)
-                        <button class="butn no-margin-bottom btn-block" id="pay-button">Bayar Sekarang</button>
-                        @endif
+                        <div id="checktime">
+                            @if ($order->status == 0 || $order->status == 5)
+                            <button class="butn no-margin-bottom btn-block" id="pay-button">Bayar Sekarang</button>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
@@ -273,7 +275,6 @@ $icon = "far fa-clock";
                 clearInterval(x);
                 document.getElementById("time_expired").innerHTML = "EXPIRED";
                 document.getElementById("checktime").style.display = "none";
-                return;
             }
         }, 1000);
     </script>
