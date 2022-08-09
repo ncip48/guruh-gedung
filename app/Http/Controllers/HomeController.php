@@ -24,7 +24,5 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $tasks = Reservasi::get();
-        return view('admin.home', compact('tasks'));
     }
 }

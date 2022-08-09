@@ -3,7 +3,7 @@
 use App\Http\Controllers\CallbackController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\ReservasiController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,7 +30,7 @@ Route::get('/gallery', [GaleriController::class, 'index']);
 Auth::routes();
 
 //route admin lur
-Route::middleware(['is_admin'])->group(function() {
+Route::middleware(['is_admin','auth'])->group(function() {
     Route::prefix('admin')->group(function() {
         Route::get('home', [HomeController::class, 'index'])->name('admin.home');
     });

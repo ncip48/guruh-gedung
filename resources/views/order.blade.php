@@ -21,6 +21,7 @@
         const payButton = document.querySelector('#pay-button');
         payButton.addEventListener('click', function(e) {
             e.preventDefault();
+            console.log('y');
 
             snap.pay('{{ $snapToken }}', {
                 // Optional
@@ -42,6 +43,9 @@
                     /* You may add your own js here, this is just example */
                     // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
                     console.log(result)
+                    location.reload();
+                },
+                onClose: function(result) {
                     location.reload();
                 }
             });
