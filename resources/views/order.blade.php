@@ -3,8 +3,14 @@
 @section('content')
     @if ($order->status == 0 || $order->status == 5)
         <button class="btn btn-primary" id="pay-button">Bayar Sekarang</button>
-    @else
+    @elseif ($order->status == 1)
         Pembayaran berhasil
+    @elseif ($order->status == 2)
+        Pembayaran sedang diproses
+    @elseif ($order->status == 3)
+        Pembayaran dibatalkan
+    @elseif ($order->status == 4)
+        Pembayaran kadaluarsa
     @endif
 @endsection
 
