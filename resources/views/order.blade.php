@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Order')
 @section('content')
-    @if ($order->status == 0)
+    @if ($order->status == 0 || $order->status == 5)
         <button class="btn btn-primary" id="pay-button">Bayar Sekarang</button>
     @else
         Pembayaran berhasil

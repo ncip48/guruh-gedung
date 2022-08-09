@@ -19,12 +19,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ReservasiController::class, 'index'])->name('home');
 
+//route biasa
 Route::get('/reservasi', [ReservasiController::class, 'reservasi']);
 Route::get('/cari', [ReservasiController::class, 'search']);
 Route::post('/booking', [ReservasiController::class, 'booking']);
 Route::get('/order', [ReservasiController::class, 'order']);
 Route::get('/gallery', [GaleriController::class, 'index']);
 
+//route login, gatau jangan diubah
 Auth::routes();
 
-Route::get('admin/home', [HomeController::class, 'index'])->name('admin.home')->middleware('is_admin');
+//route admin lur
+Route::middleware(['is_admin'])->group(function() {
+    Route::prefix('admin')->group(function() {
+        Route::get('home', [HomeController::class, 'index'])->name('admin.home');
+    });
+});

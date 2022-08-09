@@ -22,7 +22,7 @@
 
     <!-- plugins -->
     <link rel="stylesheet" href="/css/plugins.css" />
-    <link rel="stylesheet" href="code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 
     <!-- search css -->
     <link rel="stylesheet" href="/search/search.css" />
