@@ -133,9 +133,12 @@ class ReservasiController extends Controller
             $order->save();
         }
 
+        //bca = bank
+        //mandiri = echannel
+
         if($order->status != 0){
             $midtrans = \Midtrans\Transaction::status($request->kode);
-            var_dump($midtrans);
+            // var_dump($midtrans);
             return view('order', compact('order', 'snapToken', 'product', 'midtrans'));
         }
         return view('order', compact('order', 'snapToken', 'product'));

@@ -87,7 +87,11 @@ $icon = "far fa-clock";
                                 </div>
                                 <div class="col-12 col-md-6 text-right">
                                     @if ($midtrans->payment_type == 'bank' || $midtrans->payment_type == 'bank_transfer')
-                                        {{strtoupper($midtrans->va_numbers[0]->bank)}}
+                                        @if(isset($midtrans->permata_va_number))
+                                            Permata
+                                        @else
+                                            {{strtoupper($midtrans->va_numbers[0]->bank)}}
+                                        @endif
                                     @elseif ($midtrans->payment_type == 'echannel')
                                         Mandiri
                                     @endif
@@ -99,7 +103,11 @@ $icon = "far fa-clock";
                                 </div>
                                 <div class="col-12 col-md-6 text-right font-weight-bold">
                                     @if ($midtrans->payment_type == 'bank' || $midtrans->payment_type == 'bank_transfer')
-                                        {{$midtrans->va_numbers[0]->va_number}}
+                                        @if(isset($midtrans->permata_va_number))
+                                            {{$midtrans->permata_va_number}}
+                                        @else
+                                            {{$midtrans->va_numbers[0]->va_number}}
+                                        @endif
                                     @elseif ($midtrans->payment_type == 'echannel')
                                         {{$midtrans->bill_key}}
                                     @endif
