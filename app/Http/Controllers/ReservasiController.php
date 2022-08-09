@@ -10,6 +10,12 @@ use App\Services\Midtrans\CreateSnapTokenService;
 
 class ReservasiController extends Controller
 {
+
+    public function __construct()
+    {
+        \Midtrans\Config::$serverKey = config('midtrans.server_key');
+    }
+    
     //check a vailability of a table by time and date
     public function cekGedung(Request $request)
     {
@@ -127,6 +133,11 @@ class ReservasiController extends Controller
             $order->save();
         }
 
-        return view('order', compact('order', 'snapToken'));
+        if($order->status != 0){
+            $midtrans = \Midtrans\Transaction::status($request->kode);
+            var_dump($midtrans);
+            return view('order', compact('order', 'snapToken', 'product', 'midtrans'));
+        }
+        return view('order', compact('order', 'snapToken', 'product'));
     }
 }

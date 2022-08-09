@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Gedung;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
-class GedungController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +16,15 @@ class GedungController extends Controller
      */
     public function index(Request $request)
     {
-        $gedungs = Gedung::when($request->input('name'), function ($query, $name) {
-            return $query->where('nama', 'like', '%' . $name . '%');
-        })
-        ->select('*')
-        ->paginate(10);
-    return view('admin.gedung.index', compact('gedungs'));
+        //index -> menampilkan tabel data
+        // mengambil data
+        $users = DB::table('users')
+            ->when($request->input('name'), function ($query, $name) {
+                return $query->where('name', 'like', '%' . $name . '%');
+            })
+            ->select('id', 'name', 'email', DB::raw("DATE_FORMAT(created_at, '%d %M %Y') as created_at"))
+            ->paginate(10);
+        return view('admin.user.index', compact('users'));
     }
 
     /**

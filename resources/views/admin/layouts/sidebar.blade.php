@@ -16,6 +16,12 @@
                 </a>
             </li>
             <li>
+                <a href="{{ url('admin/user') }}" class="btn btn-toggle align-items-center rounded {{ $route_name == 'user.index' ? 'active' : '' }}">
+                    <i class="fa fa-users me-2"></i>
+                    Users
+                </a>
+            </li>
+            <li>
                 <a href="{{ url('admin/gedung') }}" class="btn btn-toggle align-items-center rounded {{ $route_name == 'gedung.index' ? 'active' : '' }}">
                     <i class="fa fa-building me-2"></i>
                     Gedung
