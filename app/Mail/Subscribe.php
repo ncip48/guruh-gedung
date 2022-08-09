@@ -34,7 +34,7 @@ class Subscribe extends Mailable
     public function build()
     {
         $order = Reservasi::where('kode', $this->order_id)->first();
-        $product = Gedung::where('id', $order->id_gedung);
+        $product = Gedung::where('id', $order->id_gedung)->first();
         return $this
         ->subject('Konfirmasi pemesanan gedung ' . $order->kode)
         ->markdown('emails.booking', [
