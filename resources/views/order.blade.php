@@ -114,7 +114,7 @@ $icon = "far fa-clock";
                                     @if($midtrans->payment_type == 'bank' || $midtrans->payment_type == 'bank_transfer')
                                         Transfer Bank
                                     @else
-                                        {{strtoupper($midtrans->payment_type)}} / QRIS
+                                        {{strtoupper($midtrans->payment_type)}}
                                     @endif
                                 </div>
                             </div>
@@ -151,9 +151,16 @@ $icon = "far fa-clock";
                                         @endif
                                     </div>
                                 </div>
+                                @if ($midtrans->transaction_status !== 'settlement')
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-12 col-md-6">Batas Pembayaran</div>
+                                        <div class="col-12 col-md-6 text-right font-weight-bold" id="time_expired"></div>
+                                    </div>
+                                @endif
                             @else
                                 @if($order->status != '4' && $order->status != '3' && $order->status != '1')
-                                <div class="row">
+                                <div class="row" id="checktime">
                                     <div class="col-12 col-md-6">
                                         QR
                                     </div>
@@ -235,4 +242,38 @@ $icon = "far fa-clock";
         });
     });
 </script>
+<script>
+        function addMinutes(date, minutes) {
+            return new Date(new Date(date).getTime() + minutes * 60000).getTime();
+        }
+        // Mengatur waktu akhir perhitungan mundur
+        var date = "{{ $midtrans->transaction_time }}";
+        var dates = new Date(date).getTime();
+        var countDownDate = addMinutes(date, 15);
+        document.getElementById("time_expired").innerHTML = "Checking...";
+        // Memperbarui hitungan mundur setiap 1 detik
+        var x = setInterval(function() {
+            // Untuk mendapatkan tanggal dan waktu hari ini
+            var now = new Date().getTime();
+            // console.log(countDownDate)
+            // console.log(now)
+            // Temukan jarak antara sekarang dan tanggal hitung mundur
+            var distance = countDownDate - now;
+            // console.log(distance)
+            // Perhitungan waktu untuk hari, jam, menit dan detik
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            // Keluarkan hasil dalam elemen dengan id = "time_expired"
+            document.getElementById("time_expired").innerHTML = 
+                minutes + "m " + seconds + "s ";
+            // Jika hitungan mundur selesai, tulis beberapa teks
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("time_expired").innerHTML = "EXPIRED";
+                document.getElementById("checktime").style.display = "none";
+            }
+        }, 1000);
+    </script>
 @endpush
