@@ -16,6 +16,9 @@
             <div class="row">
                 <div class="col-lg-8 sm-margin-50px-bottom">
                     <h4 class="text-uppercase letter-spacing-1 margin-30px-bottom font-size24">Form Reservasi</h4>
+                    @if($errors->any())
+                        <h6>{{$errors->first()}}</h6>
+                    @endif
                     <form id="booking-form" method="post" action="{{ url('booking') }}">
                         @csrf
                         <div class="row">

@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $tasks = Reservasi::where('status', '!=', 3)->where('status', '!=', 4)->get();
+        $tasks = Reservasi::where('status', 1)->get();
         return view('admin.home', compact('tasks'));
     }
 }

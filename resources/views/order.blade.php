@@ -106,42 +106,58 @@ $icon = "far fa-clock";
                                     @if($midtrans->payment_type == 'bank' || $midtrans->payment_type == 'bank_transfer')
                                         Transfer Bank
                                     @else
-                                        IDK
+                                        {{strtoupper($midtrans->payment_type)}} / QRIS
                                     @endif
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-12 col-md-6">
-                                    BANK
-                                </div>
-                                <div class="col-12 col-md-6 text-right">
-                                    @if($midtrans->payment_type == 'bank' || $midtrans->payment_type == 'bank_transfer')
-                                        @if(isset($midtrans->permata_va_number))
-                                            Permata
-                                        @else
-                                            {{strtoupper($midtrans->va_numbers[0]->bank)}}
+                            @if($midtrans->payment_type == 'bank' || $midtrans->payment_type == 'bank_transfer')
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        BANK
+                                    </div>
+                                    <div class="col-12 col-md-6 text-right">
+                                        @if($midtrans->payment_type == 'bank' || $midtrans->payment_type == 'bank_transfer')
+                                            @if(isset($midtrans->permata_va_number))
+                                                Permata
+                                            @else
+                                                {{strtoupper($midtrans->va_numbers[0]->bank)}}
+                                            @endif
+                                        @elseif ($midtrans->payment_type == 'echannel')
+                                            Mandiri
                                         @endif
-                                    @elseif ($midtrans->payment_type == 'echannel')
-                                        Mandiri
-                                    @endif
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 col-md-6">
-                                    No VA
-                                </div>
-                                <div class="col-12 col-md-6 text-right font-weight-bold">
-                                    @if($midtrans->payment_type == 'bank' || $midtrans->payment_type == 'bank_transfer')
-                                        @if(isset($midtrans->permata_va_number))
-                                            {{$midtrans->permata_va_number}}
-                                        @else
-                                            {{$midtrans->va_numbers[0]->va_number}}
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        No VA
+                                    </div>
+                                    <div class="col-12 col-md-6 text-right font-weight-bold">
+                                        @if($midtrans->payment_type == 'bank' || $midtrans->payment_type == 'bank_transfer')
+                                            @if(isset($midtrans->permata_va_number))
+                                                {{$midtrans->permata_va_number}}
+                                            @else
+                                                {{$midtrans->va_numbers[0]->va_number}}
+                                            @endif
+                                        @elseif ($midtrans->payment_type == 'echannel')
+                                            {{$midtrans->bill_key}}
                                         @endif
-                                    @elseif ($midtrans->payment_type == 'echannel')
-                                        {{$midtrans->bill_key}}
-                                    @endif
+                                    </div>
                                 </div>
-                            </div>
+                            @else
+                                @if($order->status != '4' && $order->status != '3' && $order->status !== '1')
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        QR
+                                    </div>
+                                        <div class="col-12 col-md-6 text-right">
+                                            @if($midtrans->payment_type == 'gopay')
+                                            <img src="https://api.sandbox.midtrans.com/v2/{{ $midtrans->payment_type }}/{{ $midtrans->transaction_id }}/qr-code"
+                                                alt="" style="width:250px;object-fit:contain" />
+                                            @endif
+                                        </div>
+                                </div>
+                                @endif
+                            @endif
                         @endif
                         <hr />
                         <div class="row">

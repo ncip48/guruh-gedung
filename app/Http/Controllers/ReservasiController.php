@@ -7,6 +7,7 @@ use App\Models\Reservasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Services\Midtrans\CreateSnapTokenService;
+use Redirect;
 
 class ReservasiController extends Controller
 {
@@ -98,6 +99,12 @@ class ReservasiController extends Controller
             'email.email' => 'Format email salah',
             'no_hp.required' => 'No HP tidak boleh kosong'
         ]);
+
+        //cek validasi biar gak dobel
+        $cek = Reservasi::where('tanggal', $request->date)->where('id_gedung', $request->gedung)->where('status', '!=', 3)->where('status', '!=', 4)->count();
+        if($cek > 0){
+            return Redirect::back()->withErrors(['msg' => 'Gedung ini sudah dipesan']);
+        }
         //bikin kode transaksi acak
         $rand = rand(1231, 7879);
         $kode = 'GDG' . $rand;
