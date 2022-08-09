@@ -4,6 +4,7 @@ use App\Http\Controllers\CallbackController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\ReservasiController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\GedungController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,5 +34,6 @@ Auth::routes();
 Route::middleware(['is_admin','auth'])->group(function() {
     Route::prefix('admin')->group(function() {
         Route::get('home', [HomeController::class, 'index'])->name('admin.home');
+        Route::resource('gedung', GedungController::class);
     });
 });

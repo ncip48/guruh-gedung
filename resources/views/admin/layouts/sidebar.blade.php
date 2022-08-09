@@ -5,14 +5,28 @@
             <span>({{ auth()->user()->email }})</span>
         </div>
         <hr />
+        @php
+            $route_name = \Route::currentRouteName();
+        @endphp
         <ul class="nav nav-pills flex-column mb-auto">
-                        <li>
-                            <a href="{{ url('admin/home') }}"
-                                class="btn btn-toggle align-items-center rounded active">
-                                <i class="fa fa-tachometer me-2"></i>
-                                Dashboard
-                            </a>
-                        </li>
+            <li>
+                <a href="{{ url('admin/home') }}" class="btn btn-toggle align-items-center rounded {{ $route_name == 'admin.home' ? 'active' : '' }}">
+                    <i class="fa fa-tachometer me-2"></i>
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('admin/gedung') }}" class="btn btn-toggle align-items-center rounded {{ $route_name == 'gedung.index' ? 'active' : '' }}">
+                    <i class="fa fa-building me-2"></i>
+                    Gedung
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('admin/reservasi') }}" class="btn btn-toggle align-items-center rounded {{ $route_name == 'reservasi.index' ? 'active' : '' }}">
+                    <i class="fa fa-calendar me-2"></i>
+                    Reservasi
+                </a>
+            </li>
         </ul>
     </div>
 </div>

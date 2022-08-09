@@ -23,8 +23,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-ungu" aria-label="Fifth navbar example">
         <div class="container-fluid py-1">
             <div class="d-flex flex-column">
-                <a class="navbar-brand" href="{{ url('dashboard') }}">SILAKA</a>
-                <h6 class="text-white">(Sistem Informasi Lamaran Pekerjaan)</h6>
+                <a class="navbar-brand" href="{{ url('dashboard') }}">Header</a>
+                <h6 class="text-white">(Deskripsi Header)</h6>
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample05"
                 aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +34,7 @@
             <div class="collapse navbar-collapse" id="navbarsExample05">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <div class="brand-text" aria-current="page" href="{{ url('akun') }}">PT Maju Berkah Adikarya
+                        <div class="brand-text" aria-current="page" href="{{ url('akun') }}">Nama Website
                         </div>
                     </li>
                     <li class="nav-item">
