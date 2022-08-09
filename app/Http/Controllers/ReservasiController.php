@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Services\Midtrans\CreateSnapTokenService;
 use Redirect;
+use App\Http\Controllers\MailerController;
 
 class ReservasiController extends Controller
 {
@@ -121,6 +122,7 @@ class ReservasiController extends Controller
             'email' => $request->email,
             'no_hp' => $request->no_hp,
         ]);
+        MailerController::sendMail($request->email, $transaction->kode);
         //redirect ke url
         return redirect('order?kode=' . $transaction->kode);
     }

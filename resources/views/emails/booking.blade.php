@@ -1,0 +1,17 @@
+@component('mail::message')
+# Pesanan dibuat
+ 
+Halo {{$detail->nama}}, terimakasih untuk reservasinya<br>
+Berikut adalah detail mengenai reservasi anda<br>
+- No Pesanan : {{$kode}}
+- Nama Pemesan : {{$detail->nama}}
+- No HP : {{$detail->no_hp}}
+- Total : @currency($detail->total)
+ 
+@component('mail::button', ['url' => $url])
+Lihat Pesanan
+@endcomponent
+ 
+Thanks,<br>
+Admin
+@endcomponent
