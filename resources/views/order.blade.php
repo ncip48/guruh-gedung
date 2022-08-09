@@ -61,7 +61,7 @@ $icon = "far fa-clock";
                                 Tanggal
                             </div>
                             <div class="col-12 col-md-6 text-right">
-                                {{$order->tanggal}}
+                                @dateonly($order->created_at)
                             </div>
                         </div>
                         <div class="row">
