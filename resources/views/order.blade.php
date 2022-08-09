@@ -50,6 +50,14 @@ $icon = "far fa-clock";
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-md-6">
+                                Kode Pesanan
+                            </div>
+                            <div class="col-12 col-md-6 text-right font-weight-bold">
+                                {{$order->kode}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-6">
                                 Items
                             </div>
                             <div class="col-12 col-md-6 text-right">
@@ -144,7 +152,7 @@ $icon = "far fa-clock";
                                     </div>
                                 </div>
                             @else
-                                @if($order->status != '4' && $order->status != '3' && $order->status !== '1')
+                                @if($order->status != '4' && $order->status != '3' && $order->status != '1')
                                 <div class="row">
                                     <div class="col-12 col-md-6">
                                         QR
