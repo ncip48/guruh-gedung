@@ -66,6 +66,30 @@ $icon = "far fa-clock";
                         </div>
                         <div class="row">
                             <div class="col-12 col-md-6">
+                                Nama Pemesan
+                            </div>
+                            <div class="col-12 col-md-6 text-right">
+                                {{$order->nama}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                Email
+                            </div>
+                            <div class="col-12 col-md-6 text-right">
+                                {{$order->email}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                No HP
+                            </div>
+                            <div class="col-12 col-md-6 text-right">
+                                {{$order->no_hp}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-6">
                                 Status
                             </div>
                             <div class="col-12 col-md-6 text-right">
@@ -73,12 +97,17 @@ $icon = "far fa-clock";
                             </div>
                         </div>
                         @if(isset($midtrans))
+                        <hr />
                             <div class="row">
                                 <div class="col-12 col-md-6">
                                     Metode Pembayaran
                                 </div>
                                 <div class="col-12 col-md-6 text-right">
-                                    {{$midtrans->payment_type}}
+                                    @if($midtrans->payment_type == 'bank' || $midtrans->payment_type == 'bank_transfer')
+                                        Transfer Bank
+                                    @else
+                                        IDK
+                                    @endif
                                 </div>
                             </div>
                             <div class="row">
@@ -86,7 +115,7 @@ $icon = "far fa-clock";
                                     BANK
                                 </div>
                                 <div class="col-12 col-md-6 text-right">
-                                    @if ($midtrans->payment_type == 'bank' || $midtrans->payment_type == 'bank_transfer')
+                                    @if($midtrans->payment_type == 'bank' || $midtrans->payment_type == 'bank_transfer')
                                         @if(isset($midtrans->permata_va_number))
                                             Permata
                                         @else
@@ -102,7 +131,7 @@ $icon = "far fa-clock";
                                     No VA
                                 </div>
                                 <div class="col-12 col-md-6 text-right font-weight-bold">
-                                    @if ($midtrans->payment_type == 'bank' || $midtrans->payment_type == 'bank_transfer')
+                                    @if($midtrans->payment_type == 'bank' || $midtrans->payment_type == 'bank_transfer')
                                         @if(isset($midtrans->permata_va_number))
                                             {{$midtrans->permata_va_number}}
                                         @else
