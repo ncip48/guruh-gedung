@@ -121,7 +121,7 @@ $icon = "far fa-clock";
                             @if($midtrans->payment_type == 'bank' || $midtrans->payment_type == 'bank_transfer')
                                 <div class="row">
                                     <div class="col-12 col-md-6">
-                                        BANK
+                                        Nama Bank
                                     </div>
                                     <div class="col-12 col-md-6 text-right">
                                         @if($midtrans->payment_type == 'bank' || $midtrans->payment_type == 'bank_transfer')
@@ -151,13 +151,6 @@ $icon = "far fa-clock";
                                         @endif
                                     </div>
                                 </div>
-                                @if ($midtrans->transaction_status !== 'settlement')
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-12 col-md-6">Batas Pembayaran</div>
-                                        <div class="col-12 col-md-6 text-right font-weight-bold" id="time_expired"></div>
-                                    </div>
-                                @endif
                             @else
                                 @if($order->status != '4' && $order->status != '3' && $order->status != '1')
                                 <div class="row" id="checktime">
@@ -172,6 +165,13 @@ $icon = "far fa-clock";
                                         </div>
                                 </div>
                                 @endif
+                            @endif
+                            @if ($midtrans->transaction_status !== 'settlement')
+                                <hr>
+                                <div class="row">
+                                    <div class="col-12 col-md-6">Batas Pembayaran</div>
+                                    <div class="col-12 col-md-6 text-right font-weight-bold" id="time_expired"></div>
+                                </div>
                             @endif
                         @endif
                         <hr />
@@ -247,7 +247,7 @@ $icon = "far fa-clock";
             return new Date(new Date(date).getTime() + minutes * 60000).getTime();
         }
         // Mengatur waktu akhir perhitungan mundur
-        var date = "{{ $midtrans->transaction_time }}";
+        var date = "{{ isset($midtrans) ? $midtrans->transaction_time : 0 }}";
         var dates = new Date(date).getTime();
         var countDownDate = addMinutes(date, 15);
         document.getElementById("time_expired").innerHTML = "Checking...";
@@ -258,8 +258,8 @@ $icon = "far fa-clock";
             // console.log(countDownDate)
             // console.log(now)
             // Temukan jarak antara sekarang dan tanggal hitung mundur
-            var distance = countDownDate - now;
-            // console.log(distance)
+            var distance = countDownDate - now
+            console.log(distance)
             // Perhitungan waktu untuk hari, jam, menit dan detik
             var days = Math.floor(distance / (1000 * 60 * 60 * 24));
             var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
