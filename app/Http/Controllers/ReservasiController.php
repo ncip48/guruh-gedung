@@ -104,7 +104,7 @@ class ReservasiController extends Controller
             'total' => $request->total,
             'tanggal' => $request->date,
             'status' => 0,
-            'nama' => $request->nama,
+            'nama' => $request->title . ' ' . $request->nama,
             'email' => $request->email,
             'no_hp' => $request->no_hp,
         ]);

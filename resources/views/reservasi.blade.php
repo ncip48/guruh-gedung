@@ -20,14 +20,23 @@
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">*Nama lengkap</label>
-                                    <input id="name" placeholder="John Doe" type="text" name="nama" value="{{ old('nama') }}">
-                                    @error('nama')
-                                        <small id="passwordHelp" class="text-danger">
-                                        {{ $message }}
-                                        </small> 
-                                    @enderror
+                                <div class="form-row">  
+                                    <div class="col-4">
+                                        <label for="title">*Titel</label>
+                                        <select name="title" id="title">
+                                            <option value="Bapak">Bapak</option>
+                                            <option value="Ibu">Ibu</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-8">
+                                        <label for="name">*Nama lengkap</label>
+                                        <input id="name" placeholder="John Doe" type="text" name="nama" value="{{ old('nama') }}">
+                                            @error('nama')
+                                                <small id="passwordHelp" class="text-danger">
+                                                {{ $message }}
+                                                </small> 
+                                            @enderror
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">

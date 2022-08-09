@@ -9,7 +9,7 @@
                         <li>
                             <a href="{{ url('admin/home') }}"
                                 class="btn btn-toggle align-items-center rounded active">
-                                <i class="fas fa-tachometer me-2"></i>
+                                <i class="fa fa-tachometer me-2"></i>
                                 Dashboard
                             </a>
                         </li>
