@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+@php $site = \App\Models\Site::first(); @endphp
+
 <head>
 
     <!-- metas -->
@@ -12,10 +14,10 @@
     <meta name="description" content="Fivestar - Hotel Booking Bootstrap Template" />
 
     <!-- title  -->
-    <title>@yield('title')</title>
+    <title>@yield('title') - {{$site->name}}</title>
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="/img/logos/favicon.png" />
+    <link rel="shortcut icon" href="/img/{{$site->favicon}}" />
     <link rel="apple-touch-icon" href="/img/logos/apple-touch-icon-57x57.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="/img/logos/apple-touch-icon-72x72.png" />
     <link rel="apple-touch-icon" sizes="114x114" href="/img/logos/apple-touch-icon-114x114.png" />
@@ -97,7 +99,7 @@
                                     <div class="navbar-header navbar-header-custom">
                                         <!-- start logo -->
                                         <a href="{{ url('/') }}" class="navbar-brand logo4"><img id="logo"
-                                                src="img/logos/logo.png" alt="logo"></a>
+                                                src="img/{{$site->logo}}" alt="logo"></a>
                                         <!-- end logo -->
                                     </div>
 

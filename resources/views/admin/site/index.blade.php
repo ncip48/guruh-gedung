@@ -18,7 +18,7 @@
                                 <div class="row">
                                 </div>
                             </div>
-                            <form method="post" action="{{url('admin/website')}}">
+                            <form method="post" action="{{ route('admin.website.update', $site) }}" enctype="multipart/form-data">
                             @method('patch')
                             @csrf
                             <div class="card-body">

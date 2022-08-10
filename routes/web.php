@@ -41,6 +41,6 @@ Route::middleware(['is_admin','auth'])->group(function() {
         Route::resource('user', UserController::class);
 
         Route::get('website', [SiteController::class, 'index'])->name('admin.website');
-        Route::patch('website', [SiteController::class, 'update'])->name('admin.website.update');
+        Route::patch('website/{site}', [SiteController::class, 'update'])->name('admin.website.update');
     });
 });
