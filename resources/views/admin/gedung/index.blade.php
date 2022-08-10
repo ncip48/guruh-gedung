@@ -52,7 +52,7 @@
                                                     <td>{{ $gedung->nama }}</td>
                                                     <td>@currency($gedung->harga)</td>
                                                     <td><img src="{{ asset('img/produk/'. $gedung->foto) }}" tag="{{ $gedung->nama }}" style="height:70px;width:100px;" /></td>
-                                                    <td>{{ $gedung->status == 1 ? 'Aktif' : 'Tidak Aktif' }}</td>
+                                                    <td><span class='badge {{$gedung->status == 1 ? 'bg-warning text-dark' : 'bg-danger'}}'>{{$gedung->status == 1 ? 'Aktif' : 'Tidak Aktif'}}</span></td>
                                                     <td class="text-end">
                                                         <div class="d-flex justify-content-end">
                                                             <a href="{{ route('gedung.edit', $gedung->id) }}"

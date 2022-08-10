@@ -59,7 +59,7 @@ class ReservasiController extends Controller
     {
         $date = $request->date;
         //select * from gedung;
-        $gedung = Gedung::all();
+        $gedung = Gedung::where('status', 1)->get();
         $tersedia = [];
         //loop buat nyari gedung yg kosong
         foreach ($gedung as $ged) {
