@@ -43,6 +43,33 @@
                                                 <th class="text-end">Action</th>
                                             </tr>
                                             @foreach ($reservasis as $key => $reservasi)
+                                            @php
+                                            if ($reservasi->status == 0){
+                                            $text = "Proses";
+                                            $color = "bg-primary";
+                                            $icon = "far fa-hourglass";
+                                            }elseif ($reservasi->status == 1){
+                                            $text = "Berhasil";
+                                            $color = "bg-warning";
+                                            $icon = "far fa-check-circle";
+                                            }elseif ($reservasi->status == 2){
+                                            $text = "Proses";
+                                            $color = "bg-primary";
+                                            $icon = "far fa-clock";
+                                            }elseif ($reservasi->status == 3){
+                                            $text = "Batal";
+                                            $color = "bg-danger";
+                                            $icon = "far fa-times-circle";
+                                            }elseif ($reservasi->status == 4){
+                                            $text = "Batal";
+                                            $color = "bg-danger";
+                                            $icon = "far fa-times-circle";
+                                            }elseif ($reservasi->status == 5){
+                                            $text = "Proses";
+                                            $color = "bg-primary";
+                                            $icon = "far fa-clock";
+                                            }
+                                            @endphp
                                                 <tr class="align-middle">
                                                     <td class="text-center">
                                                         {{ ($reservasis->currentPage() - 1) * $reservasis->perPage() + $key + 1 }}
@@ -51,7 +78,7 @@
                                                     <td>{{ $reservasi->nama }}</td>
                                                     <td>@currency($reservasi->total)</td>
                                                     <td>@dateonly($reservasi->created_at)</td>
-                                                    <td>{{ $reservasi->status == 1 ? 'Aktif' : 'Tidak Aktif' }}</td>
+                                                    <td><span class="badge {{$color}}">{{$text}}</span></td>
                                                     <td class="text-end">
                                                         <div class="d-flex justify-content-end">
                                                             <a href="{{ url('order?kode=' . $reservasi->kode) }}"

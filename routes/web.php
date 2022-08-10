@@ -31,7 +31,11 @@ Route::get('/order', [ReservasiController::class, 'order']);
 Route::get('/gallery', [GaleriController::class, 'index']);
 
 //route login, gatau jangan diubah
-Auth::routes();
+// Auth::routes();
+
+Route::group(['prefix' => 'admin'], function() {
+    Route::auth();
+});
 
 //route admin lur
 Route::middleware(['is_admin','auth'])->group(function() {

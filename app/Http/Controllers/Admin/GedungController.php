@@ -20,7 +20,7 @@ class GedungController extends Controller
         })
         ->select('*')
         ->paginate(10);
-    return view('admin.gedung.index', compact('gedungs'));
+        return view('admin.gedung.index', compact('gedungs'));
     }
 
     /**
