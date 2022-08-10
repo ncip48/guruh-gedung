@@ -242,6 +242,12 @@ footer p {
     padding: 15px 25px;
 }
 
+.card-primary .card-footer {
+    border-top: none;
+    background-color: white;
+    padding: 10px 0px;
+}
+
 .btn-ungu {
     background-color: var(--bg-ungu);
     color: white;

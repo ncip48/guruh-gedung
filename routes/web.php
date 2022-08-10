@@ -6,6 +6,7 @@ use App\Http\Controllers\ReservasiController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\GedungController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\SiteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,8 +35,12 @@ Auth::routes();
 //route admin lur
 Route::middleware(['is_admin','auth'])->group(function() {
     Route::prefix('admin')->group(function() {
+        Route::get('/', [HomeController::class, 'index'])->name('admin.index');
         Route::get('home', [HomeController::class, 'index'])->name('admin.home');
         Route::resource('gedung', GedungController::class);
         Route::resource('user', UserController::class);
+
+        Route::get('website', [SiteController::class, 'index'])->name('admin.website');
+        Route::patch('website', [SiteController::class, 'update'])->name('admin.website.update');
     });
 });

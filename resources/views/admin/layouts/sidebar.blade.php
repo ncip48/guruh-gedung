@@ -33,6 +33,13 @@
                     Reservasi
                 </a>
             </li>
+            <hr />
+            <li>
+                <a href="{{ url('admin/website') }}" class="btn btn-toggle align-items-center rounded {{ $route_name == 'admin.website' ? 'active' : '' }}">
+                    <i class="fa fa-cogs me-2"></i>
+                    Pengaturan Website
+                </a>
+            </li>
         </ul>
     </div>
 </div>
