@@ -17,6 +17,8 @@ class ReservasiController extends Controller
     {
         $reservasis = Reservasi::when($request->input('name'), function ($query, $name) {
             return $query->where('kode', 'like', '%' . $name . '%');
+        })->when($request->input('status'), function($query, $name){
+            return $query->where('status', $name);
         })
         ->select('*')
         ->orderBy('created_at', 'desc')
