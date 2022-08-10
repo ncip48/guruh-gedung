@@ -30,7 +30,7 @@ class GedungController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.gedung.create');
     }
 
     /**
@@ -41,7 +41,20 @@ class GedungController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $fileimage = $request->file('foto');
+        $nameimage = time() . '.' . $fileimage->getClientOriginalExtension();
+        $fileimage->move(public_path('img/produk'), $nameimage);
+
+        $fullPathUriImage = $nameimage;
+
+        Gedung::create([
+            'nama' => $request->nama,
+            'deskripsi' => $request->deskripsi,
+            'foto' => $fullPathUriImage,
+            'harga' => $request->harga,
+            'status' => $request->status,
+        ]);
+        return redirect(route('gedung.index'))->with('success', 'Gedung berhasil ditambahkan');
     }
 
     /**
@@ -61,9 +74,9 @@ class GedungController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Gedung $gedung)
     {
-        //
+        return view('admin.gedung.edit')->with('gedung', $gedung);        
     }
 
     /**
@@ -73,9 +86,22 @@ class GedungController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Gedung $gedung)
     {
-        //
+        $input = $request->all();
+        if ($image = $request->file('foto')) {
+            $fileimage = $request->file('foto');
+            $nameimage = time() . '.' . $fileimage->getClientOriginalExtension();
+            $fileimage->move(public_path('img/produk'), $nameimage);
+
+            $fullPathUriImage = $nameimage;
+            $input['foto'] = "$fullPathUriImage";
+        } else {
+            unset($input['foto']);
+        }
+
+        $gedung->update($input);
+        return redirect()->route('gedung.index')->with('success', 'Gedung berhasil diupdate');        
     }
 
     /**
@@ -84,8 +110,9 @@ class GedungController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Gedung $gedung)
     {
-        //
+        $gedung->delete();
+        return redirect()->route('gedung.index')->with('success', 'Gedung berhasil dihapus');
     }
 }
