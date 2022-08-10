@@ -1,10 +1,10 @@
 @extends('admin.layouts.app')
-@section('title', 'List Users')
+@section('title', 'List Reservasi')
 @section('content')
     <!-- Main Content -->
     <section class="section">
         <div class="section-body">
-            <h4 class="section-title">List Users</h4>
+            <h4 class="section-title">List Reservasi</h4>
             <div class="row">
                 <div class="col-12">
                     @include('admin.layouts.alert')
@@ -17,13 +17,10 @@
                             <div class="card-header-action">
                                 <div class="row">
                                     <div class="col-4">
-                                        <div class="">
-                                            <a class="btn btn-icon icon-left btn-ungu"
-                                                href="{{ route('user.create') }}">Tambah</a>
-                                        </div>
+                                        
                                     </div>
                                     <div class="col-8 col-md-4 ms-auto">
-                                        <form id="search" method="GET" action="{{ route('user.index') }}">
+                                        <form id="search" method="GET" action="{{ route('reservasi.index') }}">
                                             <div class="form-group">
                                                 <input type="text" name="name" class="form-control" id="name"
                                                     placeholder="cari...">
@@ -38,26 +35,30 @@
                                         <tbody>
                                             <tr>
                                                 <th class="text-center">#</th>
+                                                <th>Kode</th>
                                                 <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Created At</th>
+                                                <th>Total</th>
+                                                <th>Tanggal</th>
+                                                <th>Status</th>
                                                 <th class="text-end">Action</th>
                                             </tr>
-                                            @foreach ($users as $key => $user)
+                                            @foreach ($reservasis as $key => $reservasi)
                                                 <tr class="align-middle">
                                                     <td class="text-center">
-                                                        {{ ($users->currentPage() - 1) * $users->perPage() + $key + 1 }}
+                                                        {{ ($reservasis->currentPage() - 1) * $reservasis->perPage() + $key + 1 }}
                                                     </td>
-                                                    <td>{{ $user->name }}</td>
-                                                    <td>{{ $user->email }}</td>
-                                                    <td>{{ $user->created_at }}</td>
+                                                    <td>{{ $reservasi->kode }}</td>
+                                                    <td>{{ $reservasi->nama }}</td>
+                                                    <td>@currency($reservasi->total)</td>
+                                                    <td>@dateonly($reservasi->created_at)</td>
+                                                    <td>{{ $reservasi->status == 1 ? 'Aktif' : 'Tidak Aktif' }}</td>
                                                     <td class="text-end">
                                                         <div class="d-flex justify-content-end">
-                                                            <a href="{{ route('user.edit', $user->id) }}"
-                                                                class="btn btn-sm btn-oren btn-icon me-2"><i
-                                                                    class="fa fa-edit"></i>
-                                                                Edit</a>
-                                                            <form action="{{ route('user.destroy', $user->id) }}"
+                                                            <a href="{{ url('order?kode=' . $reservasi->kode) }}"
+                                                                class="btn btn-sm btn-oren btn-icon me-2" target="_blank"><i
+                                                                    class="fa fa-eye"></i>
+                                                                Lihat</a>
+                                                            <form action="{{ route('reservasi.destroy', $reservasi->id) }}"
                                                                 method="POST">
                                                                 <input type="hidden" name="_method" value="DELETE">
                                                                 <input type="hidden" name="_token"
@@ -71,7 +72,7 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-                                    {{ $users->links('vendor.pagination.bootstrap-5') }}
+                                    {{ $reservasis->links('vendor.pagination.bootstrap-5') }}
                                 </div>
                             </div>
                         </div>

@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Models\User;
+use App\Models\Reservasi;
 
-class UserController extends Controller
+class ReservasiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,15 +15,13 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        //index -> menampilkan tabel data
-        // mengambil data
-        $users = DB::table('users')
-            ->when($request->input('name'), function ($query, $name) {
-                return $query->where('name', 'like', '%' . $name . '%');
-            })
-            ->select('id', 'name', 'email', DB::raw("DATE_FORMAT(created_at, '%d %M %Y') as created_at"))
-            ->paginate(10);
-        return view('admin.user.index', compact('users'));
+        $reservasis = Reservasi::when($request->input('name'), function ($query, $name) {
+            return $query->where('kode', 'like', '%' . $name . '%');
+        })
+        ->select('*')
+        ->orderBy('created_at', 'desc')
+        ->paginate(10);
+        return view('admin.reservasi.index', compact('reservasis'));
     }
 
     /**
@@ -88,9 +85,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Reservasi $reservasi)
     {
-        $user->delete();
-        return redirect()->route('user.index')->with('success', 'User berhasil dihapus');
+        $reservasi->delete();
+        return redirect()->route('reservasi.index')->with('success', 'Reservasi berhasil dihapus');
     }
 }

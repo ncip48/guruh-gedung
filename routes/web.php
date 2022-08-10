@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\GedungController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SiteController;
+use App\Http\Controllers\Admin\ReservasiController as AdminReservasiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +40,7 @@ Route::middleware(['is_admin','auth'])->group(function() {
         Route::get('home', [HomeController::class, 'index'])->name('admin.home');
         Route::resource('gedung', GedungController::class);
         Route::resource('user', UserController::class);
+        Route::resource('reservasi', AdminReservasiController::class);
 
         Route::get('website', [SiteController::class, 'index'])->name('admin.website');
         Route::patch('website/{site}', [SiteController::class, 'update'])->name('admin.website.update');

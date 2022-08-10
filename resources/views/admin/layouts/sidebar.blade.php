@@ -33,6 +33,12 @@
                     Reservasi
                 </a>
             </li>
+            <li>
+                <a href="{{ url('admin/galeri') }}" class="btn btn-toggle align-items-center rounded {{ $route_name == 'galeri.index' ? 'active' : '' }}">
+                    <i class="fa fa-picture-o me-2"></i>
+                    Galeri
+                </a>
+            </li>
             <hr />
             <li>
                 <a href="{{ url('admin/website') }}" class="btn btn-toggle align-items-center rounded {{ $route_name == 'admin.website' ? 'active' : '' }}">

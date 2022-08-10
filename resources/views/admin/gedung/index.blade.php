@@ -73,9 +73,7 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-                                    <div class="d-flex justify-content-center">
-                                        {{ $gedungs->withQueryString()->links() }}
-                                    </div>
+                                    {{ $gedungs->links('vendor.pagination.bootstrap-5') }}
                                 </div>
                             </div>
                         </div>
