@@ -34,7 +34,8 @@
 }
 
 .sidebar-new {
-    min-height: 500px;
+    /* min-height: 500px; */
+    min-height: 90vh;
 }
 
 .bg-ungu-header a:hover{
@@ -141,7 +142,7 @@ footer p {
     color: white;
     background-color: var(--bg-oren);
   }
-  
+
   .btn-collapsed::after {
     font: normal normal normal 12px/1 FontAwesome;
     width: 1.25em;
@@ -152,7 +153,7 @@ footer p {
     transform-origin: .5em 50%;
     color: white;
   }
-  
+
   .btn-toggle[aria-expanded="true"] {
     color: white;
     background-color: var(--bg-oren);
@@ -166,7 +167,7 @@ footer p {
     content: '\f078';
     color: white;
   }
-  
+
   .btn-toggle-nav a {
     display: inline-flex;
     padding: .1875rem .5rem;
@@ -183,14 +184,14 @@ footer p {
     font-weight: bold;
     transition: all .3s ease-in-out;
   }
-  
+
   .scrollarea {
     overflow-y: auto;
   }
-  
+
   .fw-semibold { font-weight: 600; }
   .lh-tight { line-height: 1.25; }
-  
+
 .sidebar-new li i {
     height: 16px !important;
     width: 16px !important;

@@ -3,24 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Galeri;
 use Illuminate\Http\Request;
-use App\Models\Gedung;
 
-class GedungController extends Controller
+class GaleriController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $gedungs = Gedung::when($request->input('name'), function ($query, $name) {
-            return $query->where('nama', 'like', '%' . $name . '%');
-        })
-            ->select('*')
-            ->paginate(10);
-        return view('admin.gedung.index', compact('gedungs'));
+        $galeries = Galeri::paginate(5);
+        return view('admin.galeri.index', compact('galeries'));
     }
 
     /**
@@ -30,7 +26,7 @@ class GedungController extends Controller
      */
     public function create()
     {
-        return view('admin.gedung.create');
+        return view('admin.galeri.create');
     }
 
     /**
@@ -43,18 +39,15 @@ class GedungController extends Controller
     {
         $fileimage = $request->file('foto');
         $nameimage = time() . '.' . $fileimage->getClientOriginalExtension();
-        $fileimage->move(public_path('img/produk'), $nameimage);
+        $fileimage->move(public_path('img/gedung'), $nameimage);
 
         $fullPathUriImage = $nameimage;
 
-        Gedung::create([
-            'nama' => $request->nama,
-            'deskripsi' => $request->deskripsi,
-            'foto' => $fullPathUriImage,
-            'harga' => $request->harga,
-            'status' => $request->status,
+        Galeri::create([
+            'tag' => $fullPathUriImage,
+            'url' => $fullPathUriImage,
         ]);
-        return redirect(route('gedung.index'))->with('success', 'Gedung berhasil ditambahkan');
+        return redirect(route('galeri.index'))->with('success', 'Galeri berhasil ditambahkan');
     }
 
     /**
@@ -74,9 +67,9 @@ class GedungController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Gedung $gedung)
+    public function edit(Galeri $galeri)
     {
-        return view('admin.gedung.edit')->with('gedung', $gedung);
+        return view('admin.galeri.edit')->with('galeri', $galeri);
     }
 
     /**
@@ -86,22 +79,22 @@ class GedungController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Gedung $gedung)
+    public function update(Request $request, Galeri $galeri)
     {
         $input = $request->all();
         if ($image = $request->file('foto')) {
             $fileimage = $request->file('foto');
             $nameimage = time() . '.' . $fileimage->getClientOriginalExtension();
-            $fileimage->move(public_path('img/produk'), $nameimage);
+            $fileimage->move(public_path('img/gedung'), $nameimage);
 
             $fullPathUriImage = $nameimage;
-            $input['foto'] = "$fullPathUriImage";
+            $input['url'] = "$fullPathUriImage";
         } else {
-            unset($input['foto']);
+            unset($input['url']);
         }
-
-        $gedung->update($input);
-        return redirect()->route('gedung.index')->with('success', 'Gedung berhasil diupdate');
+        $input['tag'] = $fullPathUriImage;
+        $galeri->update($input);
+        return redirect()->route('galeri.index')->with('success', 'Galeri berhasil diupdate');
     }
 
     /**
@@ -110,9 +103,9 @@ class GedungController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Gedung $gedung)
+    public function destroy(Galeri $galeri)
     {
-        $gedung->delete();
-        return redirect()->route('gedung.index')->with('success', 'Gedung berhasil dihapus');
+        $galeri->delete();
+        return redirect()->route('galeri.index')->with('success', 'Galeri berhasil dihapus');
     }
 }

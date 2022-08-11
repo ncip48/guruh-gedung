@@ -9,12 +9,14 @@ use Redirect;
 
 class SiteController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $site = Site::first();
         return view('admin.site.index', compact('site'));
     }
 
-    public function update(Request $request, Site $site){
+    public function update(Request $request, Site $site)
+    {
         $input = $request->all();
         if ($image = $request->file('logo')) {
             $fileimage = $request->file('logo');
