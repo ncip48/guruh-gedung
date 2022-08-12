@@ -20,9 +20,9 @@
     09. Pages
     10. Portfolio
     11. Blog
-    12. Contact info        
+    12. Contact info
     13. Footer
-    
+
 ---------------------------------- */
 /* ===================================
     Common styles
@@ -1399,8 +1399,12 @@ ul.countdown li {
 
 .project-grid-img img {
   display: block;
-  width: 100%;
-  height: auto; }
+  /* width: 100%; */
+  width: 255px;
+  height: 255px;
+  object-fit: cover;
+  /* height: auto;  */
+}
 
 .project-grid-overlay {
   display: -webkit-box;

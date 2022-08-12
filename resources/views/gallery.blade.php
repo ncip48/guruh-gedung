@@ -32,7 +32,7 @@
                 <!-- end links -->
                 <div class="gallery text-center width-100">
                     @foreach ($galeri as $g)
-                        <div class="col-lg-4 col-md-6 items">
+                        <div class="col-lg-3 col-md-6 items">
                             <div class="project-grid">
                                 <div class="project-grid-img"><img src={{ asset('/img/gedung/' . $g->url) }}
                                         alt="{{ $g->tag }}" />
