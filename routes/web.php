@@ -30,6 +30,9 @@ Route::get('/cari', [ReservasiController::class, 'search']);
 Route::post('/booking', [ReservasiController::class, 'booking']);
 Route::get('/order', [ReservasiController::class, 'order']);
 Route::get('/gallery', [GaleriController::class, 'index']);
+Route::post('/booking/cancel', [App\Http\Controllers\ReservasiController::class, 'cancel'])->name('cancel');
+Route::post('/booking/payment', [App\Http\Controllers\ReservasiController::class, 'payment'])->name('payment');
+Route::post('/booking/proof', [App\Http\Controllers\ReservasiController::class, 'proof'])->name('proof');
 
 //route login, gatau jangan diubah
 // Auth::routes();

@@ -14,10 +14,10 @@
     <meta name="description" content="Fivestar - Hotel Booking Bootstrap Template" />
 
     <!-- title  -->
-    <title>@yield('title') - {{$site->name}}</title>
+    <title>@yield('title') - {{ $site->name }}</title>
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="/img/{{$site->favicon}}" />
+    <link rel="shortcut icon" href="/img/{{ $site->favicon }}" />
     <link rel="apple-touch-icon" href="/img/logos/apple-touch-icon-57x57.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="/img/logos/apple-touch-icon-72x72.png" />
     <link rel="apple-touch-icon" sizes="114x114" href="/img/logos/apple-touch-icon-114x114.png" />
@@ -99,14 +99,14 @@
                                     <div class="navbar-header navbar-header-custom">
                                         <!-- start logo -->
                                         <a href="{{ url('/') }}" class="navbar-brand logo4"><img id="logo"
-                                                src="img/{{$site->logo}}" alt="logo"></a>
+                                                src="img/{{ $site->logo }}" alt="logo"></a>
                                         <!-- end logo -->
                                     </div>
 
                                     <div class="navbar-toggler"></div>
 
                                     <!-- start menu area -->
-                                    <ul class="navbar-nav ml-auto" id="nav" style="display: none;">
+                                    <ul class="navbar-nav ml-auto" id="nav">
                                         <li><a href="{{ url('/') }}">Home</a>
                                         </li>
                                         <li><a href="{{ url('about') }}">About Us</a></li>
@@ -144,9 +144,9 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-3 col-sm-6 sm-margin-30px-bottom">
-                            <img src="img/{{$site->logo}}" class="width-70 margin-30px-bottom xs-margin-20px-bottom"
+                            <img src="img/{{ $site->logo }}" class="width-70 margin-30px-bottom xs-margin-20px-bottom"
                                 alt="" />
-                            <address class="width-70 no-margin-bottom">{{$site->address}}
+                            <address class="width-70 no-margin-bottom">{{ $site->address }}
                             </address>
                         </div>
 
@@ -154,10 +154,10 @@
                             <h3 class="footer-title-style1">Reservation</h3>
                             <ul class="list-style-1 no-margin">
                                 <li>
-                                    <span><strong>Email:</strong> {{$site->email}}</span>
+                                    <span><strong>Email:</strong> {{ $site->email }}</span>
                                 </li>
                                 <li>
-                                    <span><strong>Tel:</strong> {{$site->phone}}</span>
+                                    <span><strong>Tel:</strong> {{ $site->phone }}</span>
                                 </li>
                             </ul>
                         </div>
@@ -175,16 +175,19 @@
                             <h3 class="footer-title-style1">Social Links</h3>
                             <ul class="social-icon-style no-margin">
                                 <li>
-                                    <a href="{{$site->facebook}}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="{{ $site->facebook }}" target="_blank"><i
+                                            class="fab fa-facebook-f"></i></a>
                                 </li>
                                 <li>
-                                    <a href="{{$site->twitter}}" target="_blank"><i class="fab fa-twitter"></i></a>
+                                    <a href="{{ $site->twitter }}" target="_blank"><i class="fab fa-twitter"></i></a>
                                 </li>
                                 <li>
-                                    <a href="{{$site->instagram}}" target="_blank"><i class="fab fa-instagram"></i></a>
+                                    <a href="{{ $site->instagram }}" target="_blank"><i
+                                            class="fab fa-instagram"></i></a>
                                 </li>
                                 <li>
-                                    <a href="{{$site->whatsapp}}" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                                    <a href="{{ $site->whatsapp }}" target="_blank"><i
+                                            class="fab fa-whatsapp"></i></a>
                                 </li>
                             </ul>
                         </div>
@@ -197,7 +200,7 @@
             <div class="footer-bar xs-padding-15px-tb">
                 <div class="container">
                     <div class="text-center">
-                        <p>&copy; {{ now()->year }} {{$site->name}}</p>
+                        <p>&copy; {{ now()->year }} {{ $site->name }}</p>
                     </div>
                 </div>
             </div>
