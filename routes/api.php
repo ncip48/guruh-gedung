@@ -39,3 +39,5 @@ Route::get('/cek-gedung', [ReservasiController::class, 'cekGedung']);
 
 //callback
 Route::post('/midtrans/callback', [CallbackController::class, 'callback_midtrans']);
+
+Route::get('/rekening', [App\Http\Controllers\RekeningController::class, 'index_api']);

@@ -7,8 +7,10 @@ use App\Models\Reservasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Services\Midtrans\CreateSnapTokenService;
-use Redirect;
 use App\Http\Controllers\MailerController;
+use App\Models\BuktiPembayaran;
+use App\Models\Rekening;
+use Illuminate\Support\Facades\Redirect;
 
 class ReservasiController extends Controller
 {
@@ -17,7 +19,7 @@ class ReservasiController extends Controller
     {
         \Midtrans\Config::$serverKey = config('midtrans.server_key');
     }
-    
+
     //check a vailability of a table by time and date
     public function cekGedung(Request $request)
     {
@@ -89,21 +91,23 @@ class ReservasiController extends Controller
     public function booking(Request $request)
     {
         //validasi input sam :v
-        $request->validate([
-            'nama' => 'required',
-            'email' => 'required|email',
-            'no_hp' => 'required'
-        ],
-        [
-            'nama.required' => 'Nama tidak boleh kosong',
-            'email.required' => 'Email tidak boleh kosong',
-            'email.email' => 'Format email salah',
-            'no_hp.required' => 'No HP tidak boleh kosong'
-        ]);
+        $request->validate(
+            [
+                'nama' => 'required',
+                'email' => 'required|email',
+                'no_hp' => 'required'
+            ],
+            [
+                'nama.required' => 'Nama tidak boleh kosong',
+                'email.required' => 'Email tidak boleh kosong',
+                'email.email' => 'Format email salah',
+                'no_hp.required' => 'No HP tidak boleh kosong'
+            ]
+        );
 
         //cek validasi biar gak dobel
         $cek = Reservasi::where('tanggal', $request->date)->where('id_gedung', $request->gedung)->where('status', '!=', 3)->where('status', '!=', 4)->count();
-        if($cek > 0){
+        if ($cek > 0) {
             return Redirect::back()->withErrors(['msg' => 'Gedung ini sudah dipesan']);
         }
         //bikin kode transaksi acak
@@ -127,29 +131,78 @@ class ReservasiController extends Controller
         return redirect('order?kode=' . $transaction->kode);
     }
 
+
+
     public function order(Request $request)
     {
-        //kalo ini gausah di otak atik sam aku juga gatau :v
+        // //kalo ini gausah di otak atik sam aku juga gatau :v
+        // $order = Reservasi::where('kode', $request->kode)->first();
+        // $product = Gedung::find($order->id_gedung);
+        // $snapToken = $order->snap_token;
+        // if (empty($snapToken)) {
+        //     // Jika snap token masih NULL, buat token snap dan simpan ke database
+        //     $midtrans = new CreateSnapTokenService($order, $product);
+        //     $snapToken = $midtrans->getSnapToken();
+
+        //     $order->snap_token = $snapToken;
+        //     $order->save();
+        // }
+
+        // //bca = bank
+        // //mandiri = echannel
+
+        // if ($order->status != 0) {
+        //     $midtrans = \Midtrans\Transaction::status($request->kode);
+        //     // var_dump($midtrans);
+        //     return view('order', compact('order', 'snapToken', 'product', 'midtrans'));
+        // }
+        // return view('order', compact('order', 'snapToken', 'product'));
+        $id = $request->kode;
+        $transaction = Reservasi::select('reservasi.*', 'gedung.nama as product_name', 'gedung.harga as product_price')->where('reservasi.kode', $id)->join('gedung', 'gedung.id', '=', 'reservasi.id_gedung')->first();
+        $rekening = Rekening::where('rekening.id', $transaction->id_rekening)->join('bank', 'rekening.id_bank', '=', 'bank.id')->first();
+        $proof = BuktiPembayaran::where('id_reservasi', $transaction->id)->count();
+        $bukti = BuktiPembayaran::where('id_reservasi', $transaction->id)->first();
         $order = Reservasi::where('kode', $request->kode)->first();
         $product = Gedung::find($order->id_gedung);
-        $snapToken = $order->snap_token;
-        if (empty($snapToken)) {
-            // Jika snap token masih NULL, buat token snap dan simpan ke database
-            $midtrans = new CreateSnapTokenService($order, $product);
-            $snapToken = $midtrans->getSnapToken();
+        $data['product'] = $product;
+        $data['order'] = $order;
+        $data['result'] = $transaction;
+        $data['rekening'] = $rekening;
+        $data['proof'] = $proof;
+        $data['bukti'] = $bukti;
+        return view('order', $data);
+    }
 
-            $order->snap_token = $snapToken;
-            $order->save();
-        }
+    public function payment(Request $request)
+    {
+        $code = $request->id_reservasi;
+        $transaction = Reservasi::where('id', $code)->first();
+        $transaction->status = 2;
+        $transaction->payment_type = $request->payment_type;
+        $transaction->id_rekening = $request->payment_type == "bank" ? $request->id_rekening : null;
+        $transaction->save();
+        // return redirect()->route('home')->with('success', 'Booking canceled successfully');
+        return Redirect::back()->with('status', 'Silahkan melakukan pembayaran');
+    }
 
-        //bca = bank
-        //mandiri = echannel
+    public function proof(Request $request)
+    {
+        $fileimage = $request->file('image');
+        $nameimage = time() . '.' . $fileimage->getClientOriginalExtension();
+        $fileimage->move(public_path('img/bukti'), $nameimage);
 
-        if($order->status != 0){
-            $midtrans = \Midtrans\Transaction::status($request->kode);
-            // var_dump($midtrans);
-            return view('order', compact('order', 'snapToken', 'product', 'midtrans'));
-        }
-        return view('order', compact('order', 'snapToken', 'product'));
+        $fullPathUriImage = '/img/bukti/' . $nameimage;
+
+        $code = $request->id_reservasi;
+        $transaction = Reservasi::where('id', $code)->first();
+        $transaction->status = 2;
+        $transaction->save();
+
+        BuktiPembayaran::create([
+            'id_reservasi' => $code,
+            'gambar' => $fullPathUriImage,
+        ]);
+        // return redirect()->route('home')->with('success', 'Booking canceled successfully');
+        return Redirect::back()->with('status', 'Silahkan menunggu konfirmasi dari admin');
     }
 }
