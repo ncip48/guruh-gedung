@@ -185,6 +185,16 @@ class ReservasiController extends Controller
         return Redirect::back()->with('status', 'Silahkan melakukan pembayaran');
     }
 
+    public function cancel(Request $request)
+    {
+        $code = $request->kode;
+        $transaction = Reservasi::where('kode', $code)->first();
+        $transaction->status = 3;
+        $transaction->save();
+        // return redirect()->route('home')->with('success', 'Booking canceled successfully');
+        return Redirect::back()->with('status', 'Booking berhasil dibatalkan');
+    }
+
     public function proof(Request $request)
     {
         $fileimage = $request->file('image');
