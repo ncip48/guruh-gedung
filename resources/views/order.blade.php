@@ -250,7 +250,7 @@
                                 <form method="POST" action="{{ url('booking/cancel') }}"
                                     style="margin-block-end: 0em;">
                                     @csrf
-                                    <input type="hidden" name="kode" value="{{ $result->code_booking }}" />
+                                    <input type="hidden" name="kode" value="{{ $order->kode }}" />
                                     <button type="submit" class="btn btn-payment-cancel">Batal</button>
                                 </form>
                             </div>
