@@ -14,8 +14,8 @@
                         <div class="row align-items-center justify-content-center">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Tanggal</label>
-                                    <input type="text" name="tgl" placeholder="Tanggal" id="tgl">
+                                    <label>Cek Ketersediaan</label>
+                                    <input type="text" name="tgl" placeholder="Pilih Tanggal" id="tgl">
                                 </div>
                             </div>
                             <div class="col-md-6 margin-15px-top">
@@ -36,98 +36,47 @@
     <!-- end banner -->
 
     <!-- start about us section -->
-    <section>
-        <div class="container lg-container">
-            <div class="row margin-90px-bottom md-margin-70px-bottom sm-margin-50px-bottom align-items-end">
-                <div class="col-md-6 about">
-                    <h2 class="no-margin-bottom xs-margin-20px-bottom">Journey after your expectations, with
-                        Fivestar hotel</h2>
-                </div>
-                <div class="col-md-6">
-
-                    <div class="padding-20px-left xs-no-padding-left">
-
-                        <p class="margin-30px-bottom xs-margin-20px-bottom">Lorem Ipsum is simply dummy text of the
-                            printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
-                            text ever since the 1500s, when an unknown printer took a galley of type and scrambled
-                            it to make a type specimen book. It has survived not only five centuries, but also the
-                            leap into electronic typesetting, remaining essentially unchanged.</p>
-                        <a href="about.html">
-                            <h6 class="font-italic font-size17 no-margin-bottom">See what makes Fivestar<i
-                                    class="fas fa-arrow-right margin-10px-left vertical-align middle font-size12"></i>
-                            </h6>
-                        </a>
-
-                    </div>
-
-                </div>
-            </div>
-            <div class="row portfolio">
-                <div class="col-md-5">
-                    <div class="text-center padding-5px-all">
-                        <img src="img/portfolio/1.jpg" alt="" />
-                        <h6 class="no-margin-bottom font-size18 font-italic margin-20px-top">Natural food</h6>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="text-center portfolio-block1 padding-5px-all">
-                        <img src="img/portfolio/2.jpg" alt="" />
-                        <h6 class="no-margin-bottom font-size18 font-italic margin-20px-top">People</h6>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="text-center portfolio-block2 padding-5px-all">
-                        <img src="img/portfolio/3.jpg" alt="" />
-                        <h6 class="no-margin-bottom font-size18 font-italic margin-20px-top">Nature</h6>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    
     <!-- end about us section -->
 
     <!-- start services section -->
     <section>
         <div class="container lg-container">
             <div class="text-center margin-70px-bottom xs-margin-30px-bottom">
-                <h3 class="margin-10px-bottom">Hotel Services</h3>
-                <p class="no-margin-bottom">Lorem Ipsum is simply dummy printing</p>
+                <h3 class="margin-10px-bottom">Fasilitas Di Sekitar Gedung</h3>
+                <p class="no-margin-bottom">Anda Bisa melihat Pada Menu Galleri Untuk Foto Lengkapnya</p>
             </div>
             <div class="row">
                 <div class="col-md-6 col-xl-3 md-margin-30px-bottom">
                     <div class="bg-white border padding-40px-all h-100">
                         <span class="margin-20px-bottom font-size40 text-theme-color display-inline-block"><i
-                                class="ti-ticket"></i></span>
-                        <h3 class="font-size20 margin-20px-bottom sm-margin-10px-bottom">24-hour reception</h3>
-                        <p class="no-margin-bottom">Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry.</p>
+                                class="ti-car"></i></span>
+                        <h3 class="font-size20 margin-20px-bottom sm-margin-10px-bottom">Tempat Parkir</h3>
+                        <p class="no-margin-bottom">Kami Menyediakan Tempat Parkir Untuk Kendaraan Motor/Mobil Dengan Kapasitas Maksimal 500 Kendaraan.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-xl-3 md-margin-30px-bottom">
                     <div class="bg-white border padding-40px-all h-100">
                         <span class="margin-20px-bottom font-size40 text-theme-color display-inline-block"><i
-                                class="ti-eraser"></i></span>
-                        <h3 class="font-size20 margin-20px-bottom sm-margin-10px-bottom">Room service</h3>
-                        <p class="no-margin-bottom">Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry.</p>
+                                class="ti-bookmark"></i></span>
+                        <h3 class="font-size20 margin-20px-bottom sm-margin-10px-bottom">Masjid</h3>
+                        <p class="no-margin-bottom">Masjid AT-TAQWA Adalah Masjid Yang Ada di Sekitaran Gedung Balitro. Dapat Digunakan Siapa Saja.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-xl-3 xs-margin-30px-bottom">
                     <div class="bg-white border padding-40px-all h-100">
                         <span class="margin-20px-bottom font-size40 text-theme-color display-inline-block"><i
-                                class="ti-bookmark"></i></span>
-                        <h3 class="font-size20 margin-20px-bottom sm-margin-10px-bottom">Airport pick up</h3>
-                        <p class="no-margin-bottom">Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry.</p>
+                                class="ti-comments-smiley"></i></span>
+                        <h3 class="font-size20 margin-20px-bottom sm-margin-10px-bottom">Kantin</h3>
+                        <p class="no-margin-bottom">Terdapat Kantin Dengan Berbagai Menu Makanan Dan Minuman Dengan Harga Yang Terjangkau. Buka Dari Jam 07:00 Pagi s/d 16:00 Sore.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-xl-3">
                     <div class="bg-white border padding-40px-all h-100">
                         <span class="margin-20px-bottom font-size40 text-theme-color display-inline-block"><i
-                                class="ti-file"></i></span>
-                        <h3 class="font-size20 margin-20px-bottom sm-margin-10px-bottom">Free wifi</h3>
-                        <p class="no-margin-bottom">Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry.</p>
+                                class="ti-wallet"></i></span>
+                        <h3 class="font-size20 margin-20px-bottom sm-margin-10px-bottom">ATM 24 Jam</h3>
+                        <p class="no-margin-bottom">Tersedia Mesin ATM Bersama 24 Jam. Bagi Siapapun Yang Ingin Mengambil Uang Tunai.</p>
                     </div>
                 </div>
             </div>
@@ -136,103 +85,14 @@
     <!-- end services section -->
 
     <!-- start popular things section -->
-    <section>
-        <div class="container-fluid no-padding">
-            <div class="bg-light-gray">
-                <div class="row align-items-center no-gutters">
-                    <div class="col-lg-6">
-                        <div class="row no-gutters">
-                            <div class="col-md-6">
-                                <div class="featured-1 position-relative overflow-hidden">
-                                    <div class="featured-img">
-                                        <img src="img/content/room-1.jpg" alt="" />
-                                    </div>
-                                    <div class="featured-text">
-                                        <h4 class="margin-5px-bottom">
-                                            <a href="single-room.html"
-                                                class="font-size28 md-font-size24 text-white font-weight-500">Single
-                                                room</a>
-                                        </h4>
-                                        <span class="font-size18 md-font-size16 text-white">Starting from $120 /
-                                            night</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="featured-1 position-relative overflow-hidden">
-                                    <div class="featured-img">
-                                        <img src="img/content/room-2.jpg" alt="" />
-                                    </div>
-                                    <div class="featured-text">
-                                        <h4 class="margin-5px-bottom">
-                                            <a href="single-room.html"
-                                                class="font-size28 md-font-size24 text-white font-weight-500">Double
-                                                room</a>
-                                        </h4>
-                                        <span class="font-size18 md-font-size16 text-white">Starting from $200 /
-                                            night</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="featured-1 position-relative overflow-hidden">
-                                    <div class="featured-img">
-                                        <img src="img/content/room-3.jpg" alt="" />
-                                    </div>
-                                    <div class="featured-text">
-                                        <h4 class="margin-5px-bottom">
-                                            <a href="single-room.html"
-                                                class="font-size28 md-font-size24 text-white font-weight-500">Family
-                                                apartment</a>
-                                        </h4>
-                                        <span class="font-size18 md-font-size16 text-white">Starting from $300 /
-                                            night</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="featured-1 position-relative overflow-hidden">
-                                    <div class="featured-img">
-                                        <img src="img/content/room-4.jpg" alt="" />
-                                    </div>
-                                    <div class="featured-text">
-                                        <h4 class="margin-5px-bottom">
-                                            <a href="single-room.html"
-                                                class="font-size28 md-font-size24 text-white font-weight-500">Premium
-                                                apartment</a>
-                                        </h4>
-                                        <span class="font-size18 md-font-size16 text-white">Starting from $400 /
-                                            night</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="text-center rooms sm-padding-30px-tb">
-                            <h3
-                                class="font-size48 md-font-size42 sm-font-size38 xs-font-size34 position-relative padding-30px-bottom md-padding-20px-bottom ms-margin-20px-bottom sm-padding-15px-bottom sm-margin-15px-bottom margin-30px-bottom">
-                                Our Rooms</h3>
-                            <p
-                                class="width-65 md-width-85 xs-width-95 text-extra-dark-gray center-col margin-40px-bottom sm-margin-25px-bottom">
-                                It is a long established fact that a reader will be distracted by the readable
-                                content of a page when looking at its layout. The point of using Lorem Ipsum is that
-                                it has a more-or-less normal.</p>
-                            <a href="our-rooms.html" class="butn">show all rooms</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- end popular things section -->
 
     <!-- start testimonial section -->
     <section>
         <div class="container">
             <div class="text-center margin-50px-bottom xs-margin-30px-bottom">
-                <h3 class="margin-10px-bottom">Testimonial</h3>
-                <p class="no-margin-bottom">Lorem Ipsum is simply dummy printing</p>
+                <h3 class="margin-10px-bottom">Testimoni</h3>
+                <p class="no-margin-bottom">Berikut Adalah Testimoni Dari Beberapa Pelanggan</p>
             </div>
             <div class="owl-carousel owl-theme text-center" id="testmonials-carousel">
                 <div>

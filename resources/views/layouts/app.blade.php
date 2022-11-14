@@ -107,10 +107,10 @@
 
                                     <!-- start menu area -->
                                     <ul class="navbar-nav ml-auto" id="nav">
-                                        <li><a href="{{ url('/') }}">Home</a>
+                                        <li><a href="{{ url('/') }}">Beranda</a>
                                         </li>
-                                        <li><a href="{{ url('about') }}">About Us</a></li>
-                                        <li><a href="{{ url('gallery') }}">Gallery</a></li>
+                                        <li><a href="{{ url('about') }}">Tentang Kami</a></li>
+                                        <li><a href="{{ url('gallery') }}">Galeri</a></li>
                                     </ul>
                                     <!-- end menu area -->
 
