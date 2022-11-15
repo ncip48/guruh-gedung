@@ -49,6 +49,7 @@ Route::middleware(['is_admin', 'auth'])->group(function () {
         Route::resource('gedung', GedungController::class);
         Route::resource('user', UserController::class);
         Route::resource('reservasi', AdminReservasiController::class);
+        Route::post('reservasi/{reservasi}/proses', AdminReservasiController::class . '@proses')->name('reservasi.proses');
         Route::resource('galeri', AdminGaleriController::class);
 
         Route::get('website', [SiteController::class, 'index'])->name('admin.website');

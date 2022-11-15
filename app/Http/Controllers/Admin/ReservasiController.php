@@ -17,12 +17,12 @@ class ReservasiController extends Controller
     {
         $reservasis = Reservasi::when($request->input('name'), function ($query, $name) {
             return $query->where('kode', 'like', '%' . $name . '%');
-        })->when($request->input('status'), function($query, $name){
+        })->when($request->input('status'), function ($query, $name) {
             return $query->where('status', $name);
         })
-        ->select('*')
-        ->orderBy('created_at', 'desc')
-        ->paginate(10);
+            ->select('*')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
         return view('admin.reservasi.index', compact('reservasis'));
     }
 
@@ -91,5 +91,13 @@ class ReservasiController extends Controller
     {
         $reservasi->delete();
         return redirect()->route('reservasi.index')->with('success', 'Reservasi berhasil dihapus');
+    }
+
+    public function proses(Reservasi $reservasi)
+    {
+        $reservasi->update([
+            'status' => 1
+        ]);
+        return redirect()->route('reservasi.index')->with('success', 'Reservasi berhasil diupdate');
     }
 }

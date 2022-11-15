@@ -98,8 +98,10 @@
 
                                     <div class="navbar-header navbar-header-custom">
                                         <!-- start logo -->
-                                        <a href="{{ url('/') }}" class="navbar-brand logo4"><img id="logo"
-                                                src="img/{{ $site->logo }}" alt="logo"></a>
+                                        <a href="{{ url('/') }}" class="navbar-brand logo4">
+                                            <img id="logo" src="img/{{ $site->logo }}" alt="logo"
+                                                class="h-20">
+                                        </a>
                                         <!-- end logo -->
                                     </div>
 

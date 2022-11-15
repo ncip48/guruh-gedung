@@ -53,8 +53,8 @@
                                                         $color = 'bg-warning';
                                                         $icon = 'far fa-check-circle';
                                                     } elseif ($reservasi->status == 2) {
-                                                        $text = 'Proses';
-                                                        $color = 'bg-primary';
+                                                        $text = 'Dibayar';
+                                                        $color = 'bg-info';
                                                         $icon = 'far fa-clock';
                                                     } elseif ($reservasi->status == 3) {
                                                         $text = 'Batal';
@@ -78,6 +78,17 @@
                                                                 class="btn btn-sm btn-oren btn-icon me-2" target="_blank"><i
                                                                     class="fa fa-eye"></i>
                                                                 Lihat</a>
+                                                            @if ($reservasi->status == 2)
+                                                                <form class="me-2"
+                                                                    action="{{ route('reservasi.proses', $reservasi->id) }}"
+                                                                    method="POST">
+                                                                    <input type="hidden" name="_method" value="POST">
+                                                                    <input type="hidden" name="_token"
+                                                                        value="{{ csrf_token() }}">
+                                                                    <button class="btn btn-sm btn-info btn-icon "><i
+                                                                            class="fa fa-check"></i> Proses </button>
+                                                                </form>
+                                                            @endif
                                                             <form action="{{ route('reservasi.destroy', $reservasi->id) }}"
                                                                 method="POST">
                                                                 <input type="hidden" name="_method" value="DELETE">
