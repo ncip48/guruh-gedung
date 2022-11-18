@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             GedungSeeder::class,
             GaleriSeeder::class,
             SiteSeeder::class,
+            BankSeeder::class,
+            RekeningSeeder::class,
         ]);
     }
 }
