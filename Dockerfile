@@ -1,3 +1,11 @@
+#### Step 1 : composer
+FROM cylab/php74 AS composer
+
+COPY . /var/www/html
+WORKDIR /var/www/html
+RUN composer install --no-dev --optimize-autoloader
+
+#### Step 2 : php-fpm
 FROM php:8.0.2-apache
 
 # 1. Install development packages and clean up apt cache.
@@ -41,16 +49,13 @@ RUN docker-php-ext-install \
     opcache \
     pdo_mysql
 
-# 5. Composer.
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Laravel application
 
-# 6. We need a user with the same UID/GID as the host user
-# so when we execute CLI commands, all the host file's permissions and ownership remain intact.
-# Otherwise commands from inside the container would create root-owned files and directories.
-ARG uid
-RUN useradd -G www-data,root -u $uid -d /home/devuser devuser
-RUN mkdir -p /home/devuser/.composer && \
-    chown -R devuser:devuser /home/devuser
+COPY . /var/www/html
+# I like to use a dedicated .env file to prive sound defaults
+COPY env.docker /var/www/html/.env
+COPY --from=composer /var/www/html/vendor /var/www/html/vendor
 
-#7. chmod the storage directory
-RUN chmod -R 775 /var/www/html
+RUN mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views
+    && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+    && php artisan config:clear

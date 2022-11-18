@@ -18,7 +18,7 @@ services:
       backend:
         aliases:
           - app
-    entrypoint: sh -c "composer install && php /var/www/html/artisan migrate:refresh --seed && apache2-foreground"
+    entrypoint: sh -c "php /var/www/html/artisan migrate:refresh --seed && apache2-foreground"
 
   mysql-db-gedung:
     image: mysql:5.7
