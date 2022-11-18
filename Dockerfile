@@ -58,5 +58,4 @@ COPY --from=composer /var/www/html/vendor /var/www/html/vendor
 
 RUN mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views && \
     chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache && \
-    php artisan config:clear && \
-    php artisan migrate:refresh --seed
+    php artisan config:clear
