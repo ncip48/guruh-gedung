@@ -57,6 +57,4 @@ COPY env.docker /var/www/html/.env
 COPY --from=composer /var/www/html/vendor /var/www/html/vendor
 
 RUN mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views && \
-    chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache && \
-    php artisan cache:clear && \
-    php artisan config:clear
+    chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
