@@ -3,7 +3,7 @@ FROM laravelsail/php80-composer AS composer
 
 COPY . /var/www/html
 WORKDIR /var/www/html
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install
 
 #### Step 2 : php-fpm
 FROM php:8.0.2-apache
