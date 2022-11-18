@@ -1,7 +1,7 @@
 version: "3.5"
 
 services:
-  laravel-app:
+  gedung-laravel:
     build:
       context: "."
       args:
@@ -19,11 +19,11 @@ services:
         aliases:
           - app
 
-  mysql-db:
+  mysql-db-gedung:
     image: mysql:5.7
     container_name: mysql-db-gedung
     ports:
-      - "3310:3306"
+      - 3310:3306
     volumes:
       - ./run/var:/var/lib/mysql
     environment:
@@ -33,7 +33,7 @@ services:
     networks:
       backend:
         aliases:
-          - mysql-db
+          - mysql-db-gedung
 
 networks:
   backend:
