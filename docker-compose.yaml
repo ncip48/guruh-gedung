@@ -18,7 +18,7 @@ services:
       backend:
         aliases:
           - app
-    entrypoint: sh -c "sleep 30 && php /var/www/html/artisan migrate && apache2-foreground"
+    entrypoint: sh -c "sleep 30 && php /var/www/html/artisan migrate:refresh --seed && apache2-foreground"
 
   mysql-db-gedung:
     image: mysql:5.7
