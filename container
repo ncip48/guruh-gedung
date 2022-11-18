@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker exec -it gedung-laravel bash -c "sudo -u devuser /bin/bash"
