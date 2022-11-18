@@ -54,3 +54,6 @@ RUN mkdir -p /home/devuser/.composer && \
 
 #7. chmod the storage directory
 RUN chmod -R 775 /var/www/html
+
+#8. run migration and seed
+RUN php artisan migrate --seed
