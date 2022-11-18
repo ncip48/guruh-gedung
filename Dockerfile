@@ -37,8 +37,7 @@ RUN docker-php-ext-install \
     iconv \
     intl \
     opcache \
-    pdo_mysql \
-    zip
+    pdo_mysql
 
 # 5. Composer.
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
