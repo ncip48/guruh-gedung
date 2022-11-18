@@ -1,5 +1,5 @@
 #### Step 1 : composer
-FROM cylab/php74 AS composer
+FROM laravelsail/php81-composer AS composer
 
 COPY . /var/www/html
 WORKDIR /var/www/html
