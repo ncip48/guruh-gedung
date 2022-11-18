@@ -27,10 +27,9 @@ services:
     volumes:
       - ./run/var:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=securerootpassword
-      - MYSQL_DATABASE=${DB_DATABASE}
-      - MYSQL_USER=${DB_USERNAME}
-      - MYSQL_PASSWORD=${DB_PASSWORD}
+      MYSQL_DATABASE: "db_gedung_docker"
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      MYSQL_ROOT_PASSWORD: ""
     networks:
       backend:
         aliases:
