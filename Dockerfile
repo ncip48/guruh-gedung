@@ -56,5 +56,11 @@ COPY . /var/www/html
 COPY env.docker /var/www/html/.env
 COPY --from=composer /var/www/html/vendor /var/www/html/vendor
 
-RUN mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views && \
-    chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+#Gtw
+ARG uid
+RUN useradd -G www-data,root -u $uid -d /home/devuser devuser
+RUN mkdir -p /home/devuser/.composer && \
+    chown -R devuser:devuser /home/devuser
+
+#7. chmod the storage directory
+RUN chmod -R 775 /var/www/html/
