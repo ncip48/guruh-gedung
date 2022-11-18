@@ -42,9 +42,11 @@ RUN docker-php-ext-install \
     zip
 
 # 5. Composer.
-WORKDIR /var/www/html
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# WORKDIR /var/www/html
+# COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 ENV COMPOSER_ALLOW_SUPERUSER=1
+Install Composer
 
 RUN composer install
 
