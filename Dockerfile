@@ -53,7 +53,6 @@ RUN docker-php-ext-install \
 
 COPY . /var/www/html
 # I like to use a dedicated .env file to prive sound defaults
-COPY env.docker /var/www/html/.env
 COPY --from=composer /var/www/html/vendor /var/www/html/vendor
 
 #Gtw
