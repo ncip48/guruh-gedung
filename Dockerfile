@@ -59,7 +59,21 @@
 
 
 FROM php:7.4
-RUN apt-get update -y && apt-get install -y openssl zip unzip git
+RUN apt-get update && apt-get install -y \
+    curl \
+    g++ \
+    git \
+    libbz2-dev \
+    libfreetype6-dev \
+    libicu-dev \
+    libjpeg-dev \
+    libmcrypt-dev \
+    libpng-dev \
+    libreadline-dev \
+    sudo \
+    unzip \
+    zip \
+ && rm -rf /var/lib/apt/lists/*
 RUN apt-get install libonig-dev
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
