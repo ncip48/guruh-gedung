@@ -15,6 +15,8 @@ RUN apt-get update && apt-get install -y \
     sudo \
     unzip \
     zip \
+    iputils-ping \
+    nano \
  && rm -rf /var/lib/apt/lists/*
 
 # 2. Apache configs + document root.
