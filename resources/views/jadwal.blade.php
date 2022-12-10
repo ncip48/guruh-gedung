@@ -45,17 +45,31 @@
             // page is now ready, initialize the calendar...
             $('#calendar').fullCalendar({
                 // put your options and callbacks here
-                events: [
+                header: {
+                    left: 'title',
+                    center: '',
+                    right: ' '
+                },
+                eventSources: [
                     @foreach ($gedungs as $gedung)
-                        @foreach ($gedung['dates'] as $date)
-                            {
-                                title: 'Kocak',
-                                start: "{{ $date['status'] ? $date['date'] : null }} ",
-                                url: ""
-                            },
-                        @endforeach
+                        {
+                            events: [
+                                @foreach ($gedung['dates'] as $date)
+                                    {
+                                        title: "{{ $date['nama_gedung'] }}",
+                                        start: "{{ $date['status'] ? $date['date'] : null }} ",
+                                        url: "{!! $date['url'] !!}",
+                                    },
+                                @endforeach
+                            ],
+                            color: "#{{ substr(str_shuffle('ABCDEF0123456789'), 0, 6) }}",
+                            textColor: 'white',
+                        },
                     @endforeach
-                ]
+                ],
+                // eventColor: '#378006',
+                // eventTextColor: '#fff',
+                displayEventTime: false
             })
         });
     </script>

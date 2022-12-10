@@ -26,8 +26,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-ungu" aria-label="Fifth navbar example">
         <div class="container-fluid py-1">
             <div class="d-flex flex-column">
-                <a class="navbar-brand" href="{{ url('admin/home') }}">Header</a>
-                <h6 class="text-white">(Deskripsi Header)</h6>
+                <a class="navbar-brand" href="{{ url('admin/home') }}">Administrator</a>
+                <h6 class="text-white">(Sistem Informasi Persewaan Gedung {{ $site->name }})</h6>
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample05"
                 aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">

@@ -11,6 +11,8 @@ use App\Http\Controllers\Admin\ReservasiController as AdminReservasiController;
 use App\Http\Controllers\Admin\GaleriController as AdminGaleriController;
 use App\Http\Controllers\Admin\BankController;
 use App\Http\Controllers\Admin\RekeningController as AdminRekeningController;
+use App\Http\Controllers\PembatalanController;
+use App\Http\Controllers\Admin\PembatalanController as AdminPembatalanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +40,8 @@ Route::post('booking/proof', [ReservasiController::class, 'proof'])->name('proof
 Route::get('syarat-ketentuan', [SiteController::class, 'syaratUser']);
 Route::get('about', [SiteController::class, 'aboutUser']);
 Route::get('jadwal', [ReservasiController::class, 'cekGedungTersedia']);
+Route::get('pembatalan', [PembatalanController::class, 'index'])->name('pembatalan-user');
+Route::post('pembatalan', [PembatalanController::class, 'pembatalan'])->name('pembatalan.store');
 
 //route login, gatau jangan diubah
 // Auth::routes();
@@ -58,6 +62,9 @@ Route::middleware(['is_admin', 'auth'])->group(function () {
         Route::resource('galeri', AdminGaleriController::class);
         Route::resource('bank', BankController::class);
         Route::resource('rekening', AdminRekeningController::class);
+        Route::resource('pembatalan', AdminPembatalanController::class);
+        Route::patch('pembatalan/{pembatalan}/terima', [AdminPembatalanController::class, 'terima'])->name('pembatalan.terima');
+        Route::patch('pembatalan/{pembatalan}/tolak', [AdminPembatalanController::class, 'tolak'])->name('pembatalan.tolak');
 
         Route::get('website', [SiteController::class, 'index'])->name('admin.website');
         Route::patch('website/{site}', [SiteController::class, 'update'])->name('admin.website.update');

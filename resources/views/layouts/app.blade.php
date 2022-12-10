@@ -117,6 +117,7 @@
                                         <li><a href="{{ url('syarat-ketentuan') }}">Syarat & Ketentuan</a></li>
                                         <li><a href="{{ url('gallery') }}">Galeri</a></li>
                                         <li><a href="{{ url('jadwal') }}">Cek Jadwal</a></li>
+                                        <li><a href="{{ url('pembatalan') }}">Pembatalan</a></li>
                                     </ul>
                                     <!-- end menu area -->
 

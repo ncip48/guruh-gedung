@@ -217,12 +217,13 @@ class ReservasiController extends Controller
         return Redirect::back()->with('status', 'Silahkan menunggu konfirmasi dari admin');
     }
 
-    public function cekGedungTersedia()
+    public function cekGedungTersedia(Request $request)
     {
-        //search gedung where it not in reservasi and loop by month
-        // $dates = date('Y-m-d', strtotime('+1 month'));
+        $month = $request->month;
+        if ($month == null) {
+            $month = Carbon::now()->month;
+        }
         $today = Carbon::now();
-        $month = $today->month;
         $totalDay =  $today->month($month)->daysInMonth;
         $dates = [];
         for ($i = 1; $i <= $totalDay; $i++) {
@@ -230,19 +231,13 @@ class ReservasiController extends Controller
         }
         $gedungs = Gedung::where('status', 1)->get();
         $dates = collect($dates);
-        // $dates = $dates->map(function ($date) {
-        //     return [
-        //         'date' => $date,
-        //         'gedungs' => Gedung::whereNotIn('id', function ($query) use ($date) {
-        //             $query->select('id_gedung')->from('reservasi')->where('tanggal', $date);
-        //         })->get()
-        //     ];
-        // });
         $gedungs = $gedungs->map(function ($gedung) use ($dates) {
             return [
                 'gedung' => $gedung,
                 'dates' => $dates->map(function ($date) use ($gedung) {
                     return [
+                        'nama_gedung' => $gedung->nama,
+                        'url' => url('reservasi?date=' . $date . '&gedung=' . $gedung->id),
                         'date' => $date,
                         'status' => Reservasi::where('id_gedung', $gedung->id)->where('tanggal', $date)->where('status', '!=', 3)->where('status', '!=', 4)->count() > 0 ? false : true
                     ];
@@ -259,11 +254,6 @@ class ReservasiController extends Controller
                 }
             }
         }
-        // var_dump($gedungs);
-        // die();
-        // $gedungs = Gedung::whereNotIn('id', function ($query) {
-        //     $query->select('id_gedung')->from('reservasi');
-        // })->get();
         return view('jadwal', compact('gedungs', 'dates'));
     }
 }

@@ -37,6 +37,7 @@
                                                 <th class="text-center">#</th>
                                                 <th>Kode</th>
                                                 <th>Name</th>
+                                                <th>No HP</th>
                                                 <th>Total</th>
                                                 <th>Tanggal</th>
                                                 <th>Status</th>
@@ -68,8 +69,9 @@
                                                     </td>
                                                     <td>{{ $reservasi->kode }}</td>
                                                     <td>{{ $reservasi->nama }}</td>
+                                                    <td>{{ $reservasi->no_hp }}</td>
                                                     <td>@currency($reservasi->total)</td>
-                                                    <td>@dateonlyTgl($reservasi->tanggal)</td>
+                                                    <td>@dateonly($reservasi->tanggal)</td>
                                                     <td><span class="badge {{ $color }}">{{ $text }}</span>
                                                     </td>
                                                     <td class="text-end">
