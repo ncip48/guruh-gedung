@@ -52,10 +52,6 @@ class PembatalanController extends Controller
             'status' => 0,
         ]);
 
-        // $reservasi = Reservasi::find($request->id_reservasi);
-        // $reservasi->status = 3;
-        // $reservasi->save();
-
         return redirect()->route('pembatalan-user')->with('success', 'Ticket pembatalan berhasil dibuat, silahkan tunggu admin merespon dan dikonfirmasi melalui WhatsApp');
     }
 }
