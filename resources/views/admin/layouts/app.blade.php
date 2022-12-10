@@ -1,3 +1,6 @@
+@php
+    $site = \App\Models\Site::first();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,7 +37,8 @@
             <div class="collapse navbar-collapse" id="navbarsExample05">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <div class="brand-text" aria-current="page" href="{{ url('akun') }}">Nama Website
+                        <div class="brand-text" aria-current="page" href="{{ url('akun') }}">
+                            {{ $site->name }}
                         </div>
                     </li>
                     <li class="nav-item">
@@ -75,6 +79,7 @@
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/js/popper.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
     <!-- Page Specific JS File -->
     @stack('customScript')
 </body>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Site;
-use Redirect;
+use Illuminate\Support\Facades\Redirect;
 
 class SiteController extends Controller
 {
@@ -42,5 +42,30 @@ class SiteController extends Controller
 
         $site->update($input);
         return Redirect::back()->withSuccess('Pengaturan berhasil disimpan');
+    }
+
+    public function syarat()
+    {
+        $site = Site::first();
+        return view('admin.site.syarat', compact('site'));
+    }
+
+    public function syaratUpdate(Request $request, Site $site)
+    {
+        $input = $request->all();
+        $site->update($input);
+        return Redirect::back()->withSuccess('Syarat & Ketentuan berhasil disimpan');
+    }
+
+    public function syaratUser()
+    {
+        $site = Site::first();
+        return view('syarat-ketentuan', compact('site'));
+    }
+
+    public function aboutUser()
+    {
+        $site = Site::first();
+        return view('about', compact('site'));
     }
 }

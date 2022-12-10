@@ -27,14 +27,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ReservasiController::class, 'index'])->name('home');
 
 //route biasa
-Route::get('/reservasi', [ReservasiController::class, 'reservasi']);
-Route::get('/cari', [ReservasiController::class, 'search']);
-Route::post('/booking', [ReservasiController::class, 'booking']);
-Route::get('/order', [ReservasiController::class, 'order']);
-Route::get('/gallery', [GaleriController::class, 'index']);
-Route::post('/booking/cancel', [App\Http\Controllers\ReservasiController::class, 'cancel'])->name('cancel');
-Route::post('/booking/payment', [App\Http\Controllers\ReservasiController::class, 'payment'])->name('payment');
-Route::post('/booking/proof', [App\Http\Controllers\ReservasiController::class, 'proof'])->name('proof');
+Route::get('reservasi', [ReservasiController::class, 'reservasi']);
+Route::get('cari', [ReservasiController::class, 'search']);
+Route::post('booking', [ReservasiController::class, 'booking']);
+Route::get('order', [ReservasiController::class, 'order']);
+Route::get('gallery', [GaleriController::class, 'index']);
+Route::post('booking/cancel', [ReservasiController::class, 'cancel'])->name('cancel');
+Route::post('booking/payment', [ReservasiController::class, 'payment'])->name('payment');
+Route::post('booking/proof', [ReservasiController::class, 'proof'])->name('proof');
+Route::get('syarat-ketentuan', [SiteController::class, 'syaratUser']);
+Route::get('about', [SiteController::class, 'aboutUser']);
+Route::get('jadwal', [ReservasiController::class, 'cekGedungTersedia']);
 
 //route login, gatau jangan diubah
 // Auth::routes();
@@ -58,5 +61,7 @@ Route::middleware(['is_admin', 'auth'])->group(function () {
 
         Route::get('website', [SiteController::class, 'index'])->name('admin.website');
         Route::patch('website/{site}', [SiteController::class, 'update'])->name('admin.website.update');
+        Route::get('syarat-ketentuan', [SiteController::class, 'syarat'])->name('sk.website');
+        Route::patch('syarat-ketentuan/{site}', [SiteController::class, 'syaratUpdate'])->name('sk.website.update');
     });
 });

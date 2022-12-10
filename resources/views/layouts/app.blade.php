@@ -32,6 +32,8 @@
     <!-- core style css -->
     <link href="/css/styles.css" rel="stylesheet" />
 
+    @stack('customStyle')
+
     <!-- jQuery -->
     <script src="/js/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
@@ -112,7 +114,9 @@
                                         <li><a href="{{ url('/') }}">Beranda</a>
                                         </li>
                                         <li><a href="{{ url('about') }}">Tentang Kami</a></li>
+                                        <li><a href="{{ url('syarat-ketentuan') }}">Syarat & Ketentuan</a></li>
                                         <li><a href="{{ url('gallery') }}">Galeri</a></li>
+                                        <li><a href="{{ url('jadwal') }}">Cek Jadwal</a></li>
                                     </ul>
                                     <!-- end menu area -->
 
@@ -146,8 +150,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-3 col-sm-6 sm-margin-30px-bottom">
-                            <img src="img/{{ $site->logo }}" class="width-70 margin-30px-bottom xs-margin-20px-bottom"
-                                alt="" />
+                            <img src="img/{{ $site->logo }}"
+                                class="width-70 margin-30px-bottom xs-margin-20px-bottom" alt="" />
                             <address class="width-70 no-margin-bottom">{{ $site->address }}
                             </address>
                         </div>
@@ -181,7 +185,8 @@
                                             class="fab fa-facebook-f"></i></a>
                                 </li>
                                 <li>
-                                    <a href="{{ $site->twitter }}" target="_blank"><i class="fab fa-twitter"></i></a>
+                                    <a href="{{ $site->twitter }}" target="_blank"><i
+                                            class="fab fa-twitter"></i></a>
                                 </li>
                                 <li>
                                     <a href="{{ $site->instagram }}" target="_blank"><i

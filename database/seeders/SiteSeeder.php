@@ -27,6 +27,7 @@ class SiteSeeder extends Seeder
             'logo' => 'logo.png',
             'favicon' => 'favicon.png',
             'about' => 'Traveloki adalah sebuah website yang menyediakan informasi mengenai destinasi wisata di Indonesia.',
+            'sk' => 'Lorem ipsum dolor sit amet',
             'created_at' => now(),
         ]);
     }

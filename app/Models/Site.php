@@ -9,5 +9,5 @@ class Site extends Model
 {
     use HasFactory;
     protected $table = 'site';
-    protected $fillable = ['name', 'address', 'phone', 'email', 'facebook', 'twitter', 'instagram', 'whatsapp', 'description', 'logo', 'favicon', 'about'];
+    protected $fillable = ['name', 'address', 'phone', 'email', 'facebook', 'twitter', 'instagram', 'whatsapp', 'description', 'logo', 'favicon', 'about', 'sk'];
 }

@@ -21,7 +21,7 @@ class ReservasiController extends Controller
             return $query->where('status', $name);
         })
             ->select('*')
-            ->orderBy('created_at', 'desc')
+            ->orderBy('tanggal', 'desc')
             ->paginate(10);
         return view('admin.reservasi.index', compact('reservasis'));
     }

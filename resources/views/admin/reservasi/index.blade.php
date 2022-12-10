@@ -69,7 +69,7 @@
                                                     <td>{{ $reservasi->kode }}</td>
                                                     <td>{{ $reservasi->nama }}</td>
                                                     <td>@currency($reservasi->total)</td>
-                                                    <td>@dateonly($reservasi->created_at)</td>
+                                                    <td>@dateonlyTgl($reservasi->tanggal)</td>
                                                     <td><span class="badge {{ $color }}">{{ $text }}</span>
                                                     </td>
                                                     <td class="text-end">

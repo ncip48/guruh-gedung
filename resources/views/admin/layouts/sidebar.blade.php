@@ -38,6 +38,13 @@
                 </a>
             </li>
             <li>
+                <a href="{{ url('admin/pembatalan') }}"
+                    class="btn btn-toggle align-items-center rounded {{ $route_name == 'pembatalan.index' ? 'active' : '' }}">
+                    <i class="fa fa-calendar-times-o me-2"></i>
+                    Pembatalan
+                </a>
+            </li>
+            <li>
                 <a href="{{ url('admin/galeri') }}"
                     class="btn btn-toggle align-items-center rounded {{ $route_name == 'galeri.index' ? 'active' : '' }}">
                     <i class="fa fa-picture-o me-2"></i>
@@ -59,6 +66,13 @@
                 </a>
             </li>
             <hr />
+            <li>
+                <a href="{{ url('admin/syarat-ketentuan') }}"
+                    class="btn btn-toggle align-items-center rounded {{ $route_name == 'sk.website' ? 'active' : '' }}">
+                    <i class="fa fa-balance-scale me-2"></i>
+                    Syarat & Ketentuan
+                </a>
+            </li>
             <li>
                 <a href="{{ url('admin/website') }}"
                     class="btn btn-toggle align-items-center rounded {{ $route_name == 'admin.website' ? 'active' : '' }}">
