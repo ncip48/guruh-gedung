@@ -44,6 +44,20 @@
                     Galeri
                 </a>
             </li>
+            <li>
+                <a href="{{ url('admin/bank') }}"
+                    class="btn btn-toggle align-items-center rounded {{ $route_name == 'bank.index' ? 'active' : '' }}">
+                    <i class="fa fa-university me-2"></i>
+                    Bank
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('admin/rekening') }}"
+                    class="btn btn-toggle align-items-center rounded {{ $route_name == 'rekening.index' ? 'active' : '' }}">
+                    <i class="fa fa-credit-card me-2"></i>
+                    Rekening
+                </a>
+            </li>
             <hr />
             <li>
                 <a href="{{ url('admin/website') }}"

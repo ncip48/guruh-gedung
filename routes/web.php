@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SiteController;
 use App\Http\Controllers\Admin\ReservasiController as AdminReservasiController;
 use App\Http\Controllers\Admin\GaleriController as AdminGaleriController;
+use App\Http\Controllers\Admin\BankController;
+use App\Http\Controllers\Admin\RekeningController as AdminRekeningController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,6 +53,8 @@ Route::middleware(['is_admin', 'auth'])->group(function () {
         Route::resource('reservasi', AdminReservasiController::class);
         Route::post('reservasi/{reservasi}/proses', AdminReservasiController::class . '@proses')->name('reservasi.proses');
         Route::resource('galeri', AdminGaleriController::class);
+        Route::resource('bank', BankController::class);
+        Route::resource('rekening', AdminRekeningController::class);
 
         Route::get('website', [SiteController::class, 'index'])->name('admin.website');
         Route::patch('website/{site}', [SiteController::class, 'update'])->name('admin.website.update');
