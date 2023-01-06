@@ -99,6 +99,12 @@ class PembatalanController extends Controller
         Reservasi::where('id', $pembatalan->id_reservasi)->update([
             'status' => 3
         ]);
+        $reservasi = Reservasi::where('id', $pembatalan->id_reservasi)->first();
+        $pesan = 'Pembatalan reservasi dengan kode $_KODE_$ atas nama $_NAMA_$ telah disetujui, silahkan cek link berikut untuk melihat detail reservasi anda: $_LINK_$';
+        $pesan = str_replace('$_KODE_$', $reservasi->kode, $pesan);
+        $pesan = str_replace('$_LINK_$', url('reservasi/' . $reservasi->kode), $pesan);
+        $pesan = str_replace('$_NAMA_$', $reservasi->nama, $pesan);
+        ReservasiController::sendWhatsapp($reservasi->no_hp, $pesan);
         return redirect()->route('pembatalan.index')->with('success', 'Pembatalan Reservasi Berhasil Diterima');
     }
 
