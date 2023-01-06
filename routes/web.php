@@ -13,6 +13,9 @@ use App\Http\Controllers\Admin\BankController;
 use App\Http\Controllers\Admin\RekeningController as AdminRekeningController;
 use App\Http\Controllers\PembatalanController;
 use App\Http\Controllers\Admin\PembatalanController as AdminPembatalanController;
+use App\Http\Controllers\Karyawan\HomeController as KaryawanHomeController;
+use App\Http\Controllers\Karyawan\ReservasiController as KaryawanReservasiController;
+use App\Http\Controllers\Karyawan\PembatalanController as KaryawanPembatalanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,9 +50,9 @@ Route::get('cetak_invoice', [ReservasiController::class, 'cetak_invoice'])->name
 //route login, gatau jangan diubah
 // Auth::routes();
 
-Route::group(['prefix' => 'admin'], function () {
-    Route::auth();
-});
+// Route::group(['prefix' => 'admin'], function () {
+Route::auth();
+// });
 
 //route admin lur
 Route::middleware(['is_admin', 'auth'])->group(function () {
@@ -71,5 +74,19 @@ Route::middleware(['is_admin', 'auth'])->group(function () {
         Route::patch('website/{site}', [SiteController::class, 'update'])->name('admin.website.update');
         Route::get('syarat-ketentuan', [SiteController::class, 'syarat'])->name('sk.website');
         Route::patch('syarat-ketentuan/{site}', [SiteController::class, 'syaratUpdate'])->name('sk.website.update');
+    });
+});
+
+Route::middleware(['is_karyawan', 'auth'])->group(function () {
+    Route::prefix('karyawan')->group(function () {
+        Route::get('/', [KaryawanHomeController::class, 'index'])->name('karyawan.index');
+        Route::get('home', [KaryawanHomeController::class, 'index'])->name('karyawan.home');
+        Route::name('karyawan.')->group(function () {
+            Route::resource('reservasi', KaryawanReservasiController::class);
+            Route::resource('pembatalan', KaryawanPembatalanController::class);
+        });
+        Route::post('reservasi/{reservasi}/proses', KaryawanReservasiController::class . '@proses')->name('karyawan.reservasi.proses');
+        Route::patch('pembatalan/{pembatalan}/terima', [KaryawanPembatalanController::class, 'terima'])->name('karyawan.pembatalan.terima');
+        Route::patch('pembatalan/{pembatalan}/tolak', [KaryawanPembatalanController::class, 'tolak'])->name('karyawan.pembatalan.tolak');
     });
 });

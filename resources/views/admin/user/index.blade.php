@@ -40,6 +40,7 @@
                                                 <th class="text-center">#</th>
                                                 <th>Name</th>
                                                 <th>Email</th>
+                                                <th>Role</th>
                                                 <th>Created At</th>
                                                 <th class="text-end">Action</th>
                                             </tr>
@@ -50,6 +51,12 @@
                                                     </td>
                                                     <td>{{ $user->name }}</td>
                                                     <td>{{ $user->email }}</td>
+                                                    <td>
+                                                        <span
+                                                            class="badge {{ $user->role == 1 ? 'bg-danger' : 'bg-primary' }}">
+                                                            {{ $user->role == 1 ? 'Admin' : 'Karyawan' }}
+                                                        </span>
+                                                    </td>
                                                     <td>{{ $user->created_at }}</td>
                                                     <td class="text-end">
                                                         <div class="d-flex justify-content-end">
