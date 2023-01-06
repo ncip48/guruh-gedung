@@ -10,8 +10,10 @@ use App\Services\Midtrans\CreateSnapTokenService;
 use App\Http\Controllers\MailerController;
 use App\Models\BuktiPembayaran;
 use App\Models\Rekening;
+use App\Models\Site;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ReservasiController extends Controller
 {
@@ -172,6 +174,15 @@ class ReservasiController extends Controller
         $data['proof'] = $proof;
         $data['bukti'] = $bukti;
         return view('order', $data);
+    }
+
+    public function cetak_invoice(Request $request)
+    {
+        $id = $request->kode;
+        $transaction = Reservasi::select('reservasi.*', 'gedung.nama as product_name', 'gedung.harga as product_price')->where('reservasi.kode', $id)->join('gedung', 'gedung.id', '=', 'reservasi.id_gedung')->first();
+        $site = Site::first();
+        $pdf = PDF::loadview('invoice', ['transaksi' => $transaction, 'site' => $site])->setPaper('a4', 'landscape');
+        return $pdf->stream();
     }
 
     public function payment(Request $request)

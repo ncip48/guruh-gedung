@@ -123,6 +123,15 @@
                                     @currency($order->total)
                                 </div>
                             </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-sm text-muted">Invoice</div>
+                                <div class="col-sm text-right font-weight-600">
+                                    <a href="{{ url('cetak_invoice?kode=' . $order->kode) }}" target="_blank">Lihat
+                                        Invoice</a>
+                                </div>
+                            </div>
+                            <hr />
                         </div>
                         @if ($result->status == 0)
                             <div class="card-body p-3 p-sm-4 mb-4" id="box-payment">

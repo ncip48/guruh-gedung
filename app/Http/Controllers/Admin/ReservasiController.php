@@ -100,7 +100,7 @@ class ReservasiController extends Controller
         ]);
         $pesan = 'Pembayaran dengan kode $_KODE_$ atas nama $_NAMA_$ telah berhasil di proses, silahkan cek link berikut untuk melihat detail reservasi anda: $_LINK_$';
         $pesan = str_replace('$_KODE_$', $reservasi->kode, $pesan);
-        $pesan = str_replace('$_LINK_$', url('reservasi/' . $reservasi->kode), $pesan);
+        $pesan = str_replace('$_LINK_$', url('order?kode=' . $reservasi->kode), $pesan);
         $pesan = str_replace('$_NAMA_$', $reservasi->nama, $pesan);
         $this->sendWhatsapp($reservasi->no_hp, $pesan);
         return redirect()->route('reservasi.index')->with('success', 'Reservasi berhasil diupdate');

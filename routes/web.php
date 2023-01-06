@@ -42,6 +42,7 @@ Route::get('about', [SiteController::class, 'aboutUser']);
 Route::get('jadwal', [ReservasiController::class, 'cekGedungTersedia']);
 Route::get('pembatalan', [PembatalanController::class, 'index'])->name('pembatalan-user');
 Route::post('pembatalan', [PembatalanController::class, 'pembatalan'])->name('pembatalan.store');
+Route::get('cetak_invoice', [ReservasiController::class, 'cetak_invoice'])->name('cetak_invoice');
 
 //route login, gatau jangan diubah
 // Auth::routes();
