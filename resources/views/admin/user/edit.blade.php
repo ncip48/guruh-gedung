@@ -24,6 +24,18 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-12 mb-3">
+                                            <label for="username" class="form-label">Username</label>
+                                            <input type="text" class="form-control" id="username" name="username"
+                                                value="{{ $user->username }}" required>
+                                            @error('username')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 mb-3">
                                             <label for="name" class="form-label">Nama</label>
                                             <input type="text" class="form-control" id="name" name="name"
                                                 value="{{ $user->name }}" required>

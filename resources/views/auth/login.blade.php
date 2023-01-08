@@ -57,13 +57,13 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="email"
-                                        class="col-form-label text-md-end">{{ __('Email Address') }}</label>
-                                    <input id="email" type="email" @error('email') is-invalid @enderror"
-                                        name="email" value="{{ old('email') }}" required autocomplete="email"
+                                    <label for="username"
+                                        class="col-form-label text-md-end">{{ __('Username') }}</label>
+                                    <input id="username" type="text" @error('username') is-invalid @enderror"
+                                        name="username" value="{{ old('username') }}" required autocomplete="username"
                                         autofocus>
 
-                                    @error('email')
+                                    @error('username')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

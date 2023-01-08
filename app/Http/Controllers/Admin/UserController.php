@@ -23,7 +23,7 @@ class UserController extends Controller
             ->when($request->input('name'), function ($query, $name) {
                 return $query->where('name', 'like', '%' . $name . '%');
             })
-            ->select('id', 'name', 'email', 'role', DB::raw("DATE_FORMAT(created_at, '%d %M %Y') as created_at"))
+            ->select('id', 'name', 'email', 'username', 'role', DB::raw("DATE_FORMAT(created_at, '%d %M %Y') as created_at"))
             ->paginate(10);
         return view('admin.user.index', compact('users'));
     }
@@ -47,6 +47,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         User::create([
+            'username' => $request['username'],
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),

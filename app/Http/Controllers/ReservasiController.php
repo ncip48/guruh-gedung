@@ -14,6 +14,7 @@ use App\Models\Site;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Http\Controllers\Admin\ReservasiController as WaController;
 
 class ReservasiController extends Controller
 {
@@ -130,6 +131,11 @@ class ReservasiController extends Controller
             'no_hp' => $request->no_hp,
         ]);
         MailerController::sendMail($request->email, $transaction->kode);
+        $pesan = 'Ada pemesanan baru dengan kode $_KODE_$ atas nama $_NAMA_$, silahkan cek link berikut untuk melihat detail reservasi: $_LINK_$';
+        $pesan = str_replace('$_KODE_$', $transaction->kode, $pesan);
+        $pesan = str_replace('$_LINK_$', url('order?kode=' . $transaction->kode), $pesan);
+        $pesan = str_replace('$_NAMA_$', $transaction->nama, $pesan);
+        WaController::sendWhatsapp('082112529951', $transaction->kode);
         //redirect ke url
         return redirect('order?kode=' . $transaction->kode);
     }
@@ -138,28 +144,7 @@ class ReservasiController extends Controller
 
     public function order(Request $request)
     {
-        // //kalo ini gausah di otak atik sam aku juga gatau :v
-        // $order = Reservasi::where('kode', $request->kode)->first();
-        // $product = Gedung::find($order->id_gedung);
-        // $snapToken = $order->snap_token;
-        // if (empty($snapToken)) {
-        //     // Jika snap token masih NULL, buat token snap dan simpan ke database
-        //     $midtrans = new CreateSnapTokenService($order, $product);
-        //     $snapToken = $midtrans->getSnapToken();
-
-        //     $order->snap_token = $snapToken;
-        //     $order->save();
-        // }
-
-        // //bca = bank
-        // //mandiri = echannel
-
-        // if ($order->status != 0) {
-        //     $midtrans = \Midtrans\Transaction::status($request->kode);
-        //     // var_dump($midtrans);
-        //     return view('order', compact('order', 'snapToken', 'product', 'midtrans'));
-        // }
-        // return view('order', compact('order', 'snapToken', 'product'));
+        //ambil data reservasi by kode
         $id = $request->kode;
         $transaction = Reservasi::select('reservasi.*', 'gedung.nama as product_name', 'gedung.harga as product_price')->where('reservasi.kode', $id)->join('gedung', 'gedung.id', '=', 'reservasi.id_gedung')->first();
         $rekening = Rekening::where('rekening.id', $transaction->id_rekening)->join('bank', 'rekening.id_bank', '=', 'bank.id')->first();

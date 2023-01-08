@@ -43,15 +43,14 @@ class LoginController extends Controller
     {
         $input = $request->all();
         $this->validate($request, [
-            'email' => 'required|email',
+            'username' => 'required',
             'password' => 'required',
         ], [
-            'email.required' => 'Email harus diisi',
-            'email.email' => 'Format email salah',
+            'username.required' => 'Username harus diisi',
             'password.required' => 'Password harus diisi'
         ]);
 
-        if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
+        if (auth()->attempt(array('username' => $input['username'], 'password' => $input['password']))) {
             if (auth()->user()->role == 1) {
                 return redirect()->route('admin.home');
             } else {
@@ -59,7 +58,7 @@ class LoginController extends Controller
             }
         } else {
             return redirect()->route('login')
-                ->with('error', 'Email-Address And Password Are Wrong.');
+                ->with('error', 'Username And Password Are Wrong.');
         }
     }
 }

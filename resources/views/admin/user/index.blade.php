@@ -38,6 +38,7 @@
                                         <tbody>
                                             <tr>
                                                 <th class="text-center">#</th>
+                                                <th>Username</th>
                                                 <th>Name</th>
                                                 <th>Email</th>
                                                 <th>Role</th>
@@ -49,6 +50,7 @@
                                                     <td class="text-center">
                                                         {{ ($users->currentPage() - 1) * $users->perPage() + $key + 1 }}
                                                     </td>
+                                                    <td>{{ $user->username }}</td>
                                                     <td>{{ $user->name }}</td>
                                                     <td>{{ $user->email }}</td>
                                                     <td>

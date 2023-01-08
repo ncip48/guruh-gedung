@@ -172,9 +172,9 @@
                         <div class="col-lg-3 col-sm-6 mobile-margin-30px-bottom">
                             <h3 class="footer-title-style1">Useful Links</h3>
                             <ul class="list-style-1 no-margin-bottom">
-                                <li><a href="#!">Location</a></li>
-                                <li><a href="#!">Terms &amp; Conditions</a></li>
-                                <li><a href="#!">About Us</a></li>
+                                <li><a href="{{ url('jadwal') }}">Cek Jadwal</a></li>
+                                <li><a href="{{ url('syarat-ketentuan') }}">Syarat & Ketentuan</a></li>
+                                <li><a href="{{ url('about') }}">Tentang Kami</a></li>
                             </ul>
                         </div>
 
